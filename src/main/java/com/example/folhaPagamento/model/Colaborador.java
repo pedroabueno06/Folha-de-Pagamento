@@ -9,7 +9,7 @@ public abstract class Colaborador {
     public Colaborador (String nome, int matricula, double salario) {
 
         if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome Inválido! Você não pode deixar seu nome em branco, além de ter que informar seu nome completo.");
+            throw new IllegalArgumentException("Nome Inválido! Seu nome não deve estar em branco, além de ter que informar seu nome completo.");
         }
 
         if(salario < 0) {
@@ -35,7 +35,7 @@ public abstract class Colaborador {
 
     public void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome Inválido! Você não pode deixar seu nome em branco, além de ter que informar seu nome completo.");
+            throw new IllegalArgumentException("Nome Inválido! Seu nome não deve estar em branco, além de ter que informar seu nome completo.");
         }
         
         this.nome = nome;

@@ -1,7 +1,9 @@
 package com.example;
 
+import com.example.folhaPagamento.view.Cadastro;
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Cadastro cadastro = new Cadastro(null);
+        cadastro.iniciar();
     }
 }

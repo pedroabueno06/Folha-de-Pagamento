@@ -8,6 +8,15 @@ public class GerenciadorColaboradores {
     
     private List<Colaborador> colaboradores = new ArrayList<>();
 
+    public boolean nomeExistente (String nome) {
+        for (Colaborador colaborador : colaboradores) {
+            if (colaborador.getNome().equalsIgnoreCase(nome)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean matriculaExistente(int matricula) {
         for (Colaborador colaborador : colaboradores) {
             if (colaborador.getMatricula() == matricula) {
