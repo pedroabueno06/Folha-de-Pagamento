@@ -28,7 +28,7 @@ public class GerenciadorColaboradores {
 
     public void adicionarColaborador (Colaborador colaborador) {
         if (matriculaExistente (colaborador.getMatricula())) {
-            throw new IllegalArgumentException("Matrícula inválida! Este número de matrícula já está em uso. Por favor digite uma matrícula diferente.");
+            throw new IllegalArgumentException("Matrícula inválida! Digite um número de matrícula que não esteja em uso.");
         }
         colaboradores.add(colaborador);
     }

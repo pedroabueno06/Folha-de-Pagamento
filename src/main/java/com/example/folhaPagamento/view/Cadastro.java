@@ -94,12 +94,16 @@ public class Cadastro {
             //Faz a remoção de espaços em branco que podem estar no início ou no fim do nome digitado.
             nomeCompleto = nomeCompleto.trim();
 
-            if (nomeCompleto.split("\\s+").length >= 2 && nomeCompleto.length() >= 2) {
-                nomeValido = true;
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Nome Inválido! Seu nome não deve estar em branco, além de ter que informar seu nome completo.",
+            if (nomeCompleto.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nome Inválido! Seu nome não pode estar em branco!",
                                             "Nome Inválido!", JOptionPane.ERROR_MESSAGE);
+
+            } else if (nomeCompleto.split("\\s+").length < 2) {
+                JOptionPane.showMessageDialog(null, "Nome Inválido! Você deve informar seu nome completo.",
+                                            "Nome Inválido!", JOptionPane.ERROR_MESSAGE);
+            
+            } else {
+                nomeValido = true;
             }
         }
 
@@ -120,6 +124,13 @@ public class Cadastro {
                 if (numeroMatricula < 0) {
                     JOptionPane.showMessageDialog(null, "O número da sua matrícula não deve ser negativo!",
                                                 "Matricula Inválida!", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
+
+                if (gerenciador.matriculaExistente(numeroMatricula)) {
+                    JOptionPane.showMessageDialog(null, "Matrícula inválida! Digite um número de matrícula que não esteja em uso.",
+                                                "Matrícula Inválida", JOptionPane.ERROR_MESSAGE);
+                    
                     continue;
                 }
                 return numeroMatricula;
@@ -153,7 +164,7 @@ public class Cadastro {
                 return salario;
 
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Salário Inválido! Seu salário nãoo pode possuir possuir vírgulas, apenas pontos (ex: 1.5).",
+                JOptionPane.showMessageDialog(null, "Salário Inválido! Seu salário não pode possuir possuir vírgulas, apenas pontos (ex: 1.5).",
                                             "Salário Inválido!", JOptionPane.ERROR_MESSAGE);
                 continue;
             }
@@ -324,7 +335,7 @@ public class Cadastro {
 
         try {
             gerenciador.adicionarColaborador(novoColaborador);
-            JOptionPane.showMessageDialog(null, "Colaboador cadastrado com sucesso");
+            JOptionPane.showMessageDialog(null, "Colaboador cadastrado com sucesso!");
         
 
         } catch (IllegalArgumentException e) {
