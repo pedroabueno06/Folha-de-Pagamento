@@ -4,8 +4,6 @@ import javax.swing.JOptionPane;
 
 import com.example.folhaPagamento.model.Colaborador;
 import com.example.folhaPagamento.model.ColaboradorPadrao;
-import com.example.folhaPagamento.model.ColaboradorComissionado;
-import com.example.folhaPagamento.model.ColaboradorProducao;
 import com.example.folhaPagamento.repositorio.GerenciadorColaboradores;
 
 public class Cadastro {
@@ -154,10 +152,8 @@ public class Cadastro {
     }
 
     private Double valorVendas() {
-        String valor = "";
-
         while (true) {
-            valor = JOptionPane.showInputDialog("Digite o valor total das suas vendas (Ao invés de usar vírgula, utilize ponto ex: 1.5):");
+            String valor = JOptionPane.showInputDialog("Digite o valor total das suas vendas (Ao invés de usar vírgula, utilize ponto ex: 1.5):");
 
             //Verifica se o usuário encerrou o programa.
             if (valor == null) {
@@ -171,6 +167,8 @@ public class Cadastro {
                     JOptionPane.showMessageDialog(null, "Valor de vendas inválido! Seu valor de vendas não pode ser negativo.");
                     continue;
                 }
+                return vendas;
+
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Valor de vendas inválido! Digite um valor utilizando ponto ao invés de vírgula (ex: 1.5).");
                 continue;
@@ -203,7 +201,7 @@ public class Cadastro {
         Colaborador novoColaborador = null;
 
         if (tipo.equals("Padrão")) {
-            novoColaborador = new novoColaborador(nome, matricula, salario);
+            novoColaborador = new ColaboradorPadrao(nome, matricula, salario);
 
         } else if (tipo.equals("Comissionado")) {
 
