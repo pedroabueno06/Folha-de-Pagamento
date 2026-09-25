@@ -349,6 +349,12 @@ public class Cadastro {
     private void listarColaboradores() {
         List<Colaborador> colaboradores = gerenciador.getColaboradores();
 
+        if (colaboradores.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum colaborador cadastrado!",
+                                        "", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         System.out.println("--- Lista de Colaboradores ---");
         for (Colaborador colaborador : colaboradores) {
             System.out.println(colaborador);
