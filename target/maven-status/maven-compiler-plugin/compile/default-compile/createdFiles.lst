@@ -1,0 +1,8 @@
+com\example\folhaPagamento\service\Relatorio.class
+com\example\Main.class
+com\example\folhaPagamento\repositorio\GerenciadorColaboradores.class
+com\example\folhaPagamento\model\ColaboradorComissionado.class
+com\example\folhaPagamento\model\Colaborador.class
+com\example\folhaPagamento\view\Cadastro.class
+com\example\folhaPagamento\model\ColaboradorPadrao.class
+com\example\folhaPagamento\model\ColaboradorProducao.class
