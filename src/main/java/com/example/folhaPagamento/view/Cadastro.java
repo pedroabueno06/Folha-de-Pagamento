@@ -109,6 +109,7 @@ public class Cadastro {
         while (true) {
             String texto = JOptionPane.showInputDialog("Digite sua matrícula: ");
 
+            //Verifica se o usuário encerrou o programa.
             if (texto == null) {
                 return null;
             }
@@ -130,10 +131,9 @@ public class Cadastro {
         while (true) {
             texto = JOptionPane.showInputDialog("Digite seu salário (Ao invés de usar vírgula, utilize ponto ex: 1.5): ");
 
-            ////Verifica se o usuário encerrou o programa.
+            //Verifica se o usuário encerrou o programa.
             if (texto == null) {
                 return null;
-
             }
 
             try {
@@ -150,6 +150,32 @@ public class Cadastro {
                 JOptionPane.showMessageDialog(null, "Salário inválido. Digite um valor utilizando ponto ao invés de vírgula (ex: 1.5).");
                 continue;
             }
+        }
+    }
+
+    private Double valorVendas() {
+        String valor = "";
+
+        while (true) {
+            valor = JOptionPane.showInputDialog("Digite o valor total das suas vendas (Ao invés de usar vírgula, utilize ponto ex: 1.5):");
+
+            //Verifica se o usuário encerrou o programa.
+            if (valor == null) {
+                return null;
+            }
+
+            try {
+                double vendas = Double.parseDouble(valor);
+
+                if (vendas < 0) {
+                    JOptionPane.showMessageDialog(null, "Valor de vendas inválido! Seu valor de vendas não pode ser negativo.");
+                    continue;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Valor de vendas inválido! Digite um valor utilizando ponto ao invés de vírgula (ex: 1.5).");
+                continue;
+            }
+
         }
     }
 
