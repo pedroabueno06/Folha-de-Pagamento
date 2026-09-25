@@ -34,6 +34,7 @@ public class Cadastro {
                 colaboradorAtualizado();
                     break;
                 case 3: //Remover Colaborador
+                colaboradorRemovido();
                     break;
                 case 4: //Gerar Folha de pagamento
                     break;
@@ -361,9 +362,9 @@ public class Cadastro {
         }
     }
 
-    public Integer processarMatriculaParaAtualizar() {
-        while (true) { 
-            String texto = JOptionPane.showInputDialog(null,"Digite a matrícula do colaborador que deseja atualizar",
+    public Integer lerMatriculaExistente() {
+        while (true) {
+            String texto = JOptionPane.showInputDialog(null,"Digite a matrícula do colaborador:",
                                                     "", JOptionPane.QUESTION_MESSAGE);
             
             //Verifica se o usuário encerrou o programa.
@@ -400,7 +401,7 @@ public class Cadastro {
 
     private void colaboradorAtualizado() {
 
-            Integer matricula = processarMatriculaParaAtualizar();
+            Integer matricula = lerMatriculaExistente();
             if (matricula == null) {
                 return;
             }
@@ -461,4 +462,16 @@ public class Cadastro {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
     }
+
+    private void colaboradorRemovido() {
+        Integer matricula = lerMatriculaExistente();
+
+        if(matricula == null) {
+            return;
+        }
+
+        gerenciador.removerColaborador(matricula);
+        JOptionPane.showMessageDialog(null, "Colaborador removido com sucesso!");
+    }
+
 }
