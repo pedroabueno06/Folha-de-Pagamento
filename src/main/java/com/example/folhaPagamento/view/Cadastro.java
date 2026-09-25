@@ -212,10 +212,17 @@ public class Cadastro {
         try {
             gerenciador.adicionarColaborador(novoColaborador);
             JOptionPane.showMessageDialog(null, "Colaboador cadastrado com sucesso");
+<<<<<<< HEAD
         
+=======
+>>>>>>> e16ca53370e9ae82abb5068d9f2cc3a7f8e02538
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e16ca53370e9ae82abb5068d9f2cc3a7f8e02538
