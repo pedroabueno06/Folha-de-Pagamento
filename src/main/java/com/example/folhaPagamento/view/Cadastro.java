@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 
 import com.example.folhaPagamento.model.Colaborador;
 import com.example.folhaPagamento.model.ColaboradorPadrao;
+import com.example.folhaPagamento.model.ColaboradorComissionado;
+import com.example.folhaPagamento.model.ColaboradorProducao;
 import com.example.folhaPagamento.repositorio.GerenciadorColaboradores;
 
 public class Cadastro {
