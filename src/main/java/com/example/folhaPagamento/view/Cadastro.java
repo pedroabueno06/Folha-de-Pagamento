@@ -3,8 +3,8 @@ package com.example.folhaPagamento.view;
 import javax.swing.JOptionPane;
 
 import com.example.folhaPagamento.model.Colaborador;
-import com.example.folhaPagamento.model.ColaboradorPadrao;
 import com.example.folhaPagamento.model.ColaboradorComissionado;
+import com.example.folhaPagamento.model.ColaboradorPadrao;
 import com.example.folhaPagamento.model.ColaboradorProducao;
 import com.example.folhaPagamento.repositorio.GerenciadorColaboradores;
 
@@ -23,6 +23,7 @@ public class Cadastro {
             int escolha = exibirMenu();
             switch (escolha) {
                 case 0: //Cadastrar colaborador
+                cadastrarColaborador();
                     break;
                 case 1: //Listar Colaboradores
                     break;
@@ -93,12 +94,12 @@ public class Cadastro {
             //Faz a remoção de espaços em branco que podem estar no início ou no fim do nome digitado.
             nomeCompleto = nomeCompleto.trim();
 
-            if (!nomeCompleto.isEmpty() && nomeCompleto.length() >= 2) {
+            if (nomeCompleto.split("\\s+").length >= 2 && nomeCompleto.length() >= 2) {
                 nomeValido = true;
 
             } else {
                 JOptionPane.showMessageDialog(null, "Nome Inválido! Seu nome não deve estar em branco, além de ter que informar seu nome completo.",
-                        "Nome Inválido", JOptionPane.ERROR_MESSAGE);
+                                            "Nome Inválido!", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -116,11 +117,16 @@ public class Cadastro {
 
             try {
                 int numeroMatricula = Integer.parseInt(texto);
+                if (numeroMatricula < 0) {
+                    JOptionPane.showMessageDialog(null, "O número da sua matrícula não deve ser negativo!",
+                                                "Matricula Inválida!", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
                 return numeroMatricula;
 
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Matrícula inválida! Digite um número inteiro.",
-                        "Matrícula inválida", JOptionPane.ERROR_MESSAGE);
+                                            "Matrícula inválida!", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -140,14 +146,15 @@ public class Cadastro {
                 double salario = Double.parseDouble(texto);
 
                 if (salario < 0) {
-                    JOptionPane.showMessageDialog(null, "Salário inválido! Seu salário não pode ser negativo.");
+                    JOptionPane.showMessageDialog(null, "Salário inválido! Seu salário não pode ser negativo.",
+                                                "Salário Inválido!", JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
-
                 return salario;
 
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Salário inválido. Digite um valor utilizando ponto ao invés de vírgula (ex: 1.5).");
+                JOptionPane.showMessageDialog(null, "Salário Inválido! Seu salário nãoo pode possuir possuir vírgulas, apenas pontos (ex: 1.5).",
+                                            "Salário Inválido!", JOptionPane.ERROR_MESSAGE);
                 continue;
             }
         }
@@ -166,16 +173,100 @@ public class Cadastro {
                 double vendas = Double.parseDouble(valor);
 
                 if (vendas < 0) {
-                    JOptionPane.showMessageDialog(null, "Valor de vendas inválido! Seu valor de vendas não pode ser negativo.");
+                    JOptionPane.showMessageDialog(null, "Valor de vendas inválido! Seu valor de vendas não pode ser negativo.",
+                                                "Valor de vendas Inválido!", JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
                 return vendas;
 
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Valor de vendas inválido! Digite um valor utilizando ponto ao invés de vírgula (ex: 1.5).");
+                JOptionPane.showMessageDialog(null, "Valor de vendas inválido! Seu valor de vendas não pode possuir vírgulas, apenas pontos (ex: 1.5).",
+                                            "Valor de Vendas Inválido!", JOptionPane.ERROR_MESSAGE);
                 continue;
             }
 
+        }
+    }
+
+    private Double percentualComissao() {
+        while (true) {
+            String percentual = JOptionPane.showInputDialog(null, "Digite o percentual das suas comissões (Ao invés de usar vírgula, utilize ponto ex: 1.5): ");
+
+            //Verifica se o usuário encerrou o programa.
+            if (percentual == null) {
+                return null;
+            }
+
+            try {
+                double comissao = Double.parseDouble(percentual);
+
+                if (comissao < 0) {
+                    JOptionPane.showMessageDialog(null, "Percentual de comsissão inválido! O percentual de suas vendas não pode ser negativo.",
+                                                "Percentual de Comissão Inválido!", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
+                return comissao;
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Percentual de comissão inválido! O percentual de suas vendas não pode possuir vírgulas, apenas pontos (ex: 1.5).",
+                                            "Percentual de Comissão Inválido!", JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
+        }
+    }
+
+
+    private Integer quantidadeProduzida() {
+        while (true) {
+            String quantidade = JOptionPane.showInputDialog(null, "Digite a quantidade a quantidade produzida: ");
+
+            //Verifica se o usuário encerrou o programa.
+            if (quantidade == null) {
+                return null;
+            }
+
+            try {
+                int producao = Integer.parseInt(quantidade);
+
+                if (producao < 0) {
+                    JOptionPane.showMessageDialog(null, "Quantidade produzida inválida! Sua quantidade produzida não pode ser negativa.",
+                                            "Quantidade produzida inválida!", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
+                return producao;
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Quantidade produzida invalida! Sua quantidade produzida não pode possuir vírgulas ou pontos.",
+                                            "Quantidade Produzida Inválida!", JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
+        }
+    }
+
+    private Double valorUnidade() {
+        while (true) { 
+            String valor = JOptionPane.showInputDialog(null, "Digite o valor das unidades produzidas (Ao invés de usar vírgula, utilize ponto (ex: 1.5): ");
+
+            //Verifica se o usuário encerrou o programa.
+            if (valor == null) {
+                return null;
+            }
+
+            try {
+                double unidade = Double.parseDouble(valor);
+
+                if (unidade < 0) {
+                    JOptionPane.showMessageDialog(null, "Valor de unidade produzida inválido! O valor não pode ser negativo.",
+                                            "Valor por Unidade Produzida Inválida!", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
+                return unidade;
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Valor de unidade produzida inválido! O valor de unidade não pode possuir vírgulas.",
+                                            "Valor por Unidade Produzida Inválida!", JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
         }
     }
 
@@ -206,25 +297,39 @@ public class Cadastro {
             novoColaborador = new ColaboradorPadrao(nome, matricula, salario);
 
         } else if (tipo.equals("Comissionado")) {
+            
+            Double vendas = valorVendas();
+            if (vendas == null)
+            return;
+
+            Double percentual = percentualComissao();
+            if (percentual == null)
+            return;
+
+            novoColaborador = new ColaboradorComissionado(nome, matricula, salario, vendas, percentual);
 
         } else if (tipo.equals("Produção")) {
+            
+            Integer producao = quantidadeProduzida();
+            if(producao == null)
+            return;
+
+            Double unidade = valorUnidade();
+            if (unidade == null)
+            return;
+            
+            novoColaborador = new ColaboradorProducao(nome, matricula, salario, producao, unidade);
 
         }
 
         try {
             gerenciador.adicionarColaborador(novoColaborador);
             JOptionPane.showMessageDialog(null, "Colaboador cadastrado com sucesso");
-<<<<<<< HEAD
         
-=======
->>>>>>> e16ca53370e9ae82abb5068d9f2cc3a7f8e02538
+
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> e16ca53370e9ae82abb5068d9f2cc3a7f8e02538

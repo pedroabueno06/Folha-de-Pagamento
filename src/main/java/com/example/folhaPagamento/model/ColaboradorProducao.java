@@ -4,7 +4,7 @@ public class ColaboradorProducao extends Colaborador {
     private double quantidadeProduzida;
     private double valorUnidade;
 
-    public ColaboradorProducao (String nome, int matricula, double salario, double quantidadeProduzida, double valorUnidade) {
+    public ColaboradorProducao (String nome, int matricula, double salario, int quantidadeProduzida, double valorUnidade) {
         super(nome, matricula, salario);
 
         if (quantidadeProduzida < 0) {
@@ -31,7 +31,7 @@ public class ColaboradorProducao extends Colaborador {
         return quantidadeProduzida * valorUnidade;
     }
 
-    public void setQuantidadeProduzida(double quantidadeProduzida) {
+    public void setQuantidadeProduzida(int quantidadeProduzida) {
         if (quantidadeProduzida < 0) {
             throw new IllegalArgumentException("Quantidade produzida inválida! A mesma não pode ser negativa.");
         }
