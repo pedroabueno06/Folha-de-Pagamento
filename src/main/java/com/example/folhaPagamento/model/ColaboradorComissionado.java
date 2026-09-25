@@ -27,7 +27,7 @@ public class ColaboradorComissionado extends Colaborador {
     }
 
     public double getComissao() {
-        return valorVendas * percentualComissao;
+        return (valorVendas * percentualComissao) /100;
     }
 
     public void setValorVendas(double valorVendas) {
@@ -39,7 +39,7 @@ public class ColaboradorComissionado extends Colaborador {
 
     @Override
     public double calcularSalarioFinal() {
-        double comissao = (valorVendas * percentualComissao);
+        double comissao = (valorVendas * percentualComissao) /100;
         return getSalario() + comissao;
     }
 
@@ -55,7 +55,7 @@ public class ColaboradorComissionado extends Colaborador {
                 "Tipo de Colaborador: " + getTipoColaborador() + "\n" +
                 "Salário Base: R$ " + String.format("%.2f", getSalario()) + "\n" +
                 "Valor de Vendas: R$ " + String.format("%.2f", valorVendas) + "\n" +
-                "Percentual de Comissão: " + String.format("%.2f", percentualComissao * 100) + "%" + "\n" +
+                "Percentual de Comissão: " + String.format("%.2f", percentualComissao / 100) + "%" + "\n" +
                 "Comissão: R$ " + String.format("%.2f", getComissao()) + "\n" + 
                 "Salário Final: R$ " + String.format("%.2f", calcularSalarioFinal()) + "\n";
     }
