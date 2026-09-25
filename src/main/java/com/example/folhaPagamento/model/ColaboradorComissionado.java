@@ -53,9 +53,10 @@ public class ColaboradorComissionado extends Colaborador {
         return "Nome: " + getNome() + "\n" +
                 "Matricula: " + getMatricula() + "\n" +
                 "Tipo de Colaborador: " + getTipoColaborador() + "\n" +
+                "Salário Base: R$ " + String.format("%.2f", getSalario()) + "\n" +
                 "Valor de Vendas: R$ " + String.format("%.2f", valorVendas) + "\n" +
                 "Percentual de Comissão: " + String.format("%.2f", percentualComissao * 100) + "%" + "\n" +
-                "Comissão: R$ " + String.format("%.2f", getComissao()) + "\n" +
+                "Comissão: R$ " + String.format("%.2f", getComissao()) + "\n" + 
                 "Salário Final: R$ " + String.format("%.2f", calcularSalarioFinal()) + "\n";
     }
 }

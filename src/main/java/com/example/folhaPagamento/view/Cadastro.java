@@ -1,5 +1,7 @@
 package com.example.folhaPagamento.view;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.example.folhaPagamento.model.Colaborador;
@@ -26,6 +28,7 @@ public class Cadastro {
                 cadastrarColaborador();
                     break;
                 case 1: //Listar Colaboradores
+                listarColaboradores();
                     break;
                 case 2: //Atualizar Colaborador
                     break;
@@ -59,6 +62,69 @@ public class Cadastro {
                 null,
                 opcoes, //Botões em ordem
                 opcoes[0]);
+    }
+
+    private void cadastrarColaborador() {
+        String tipo = lerTipoColaborador();
+        if (tipo == null) {
+            return;
+        }
+
+        String nome = lerNome();
+        if (nome == null) {
+            return;
+        }
+
+        Integer matricula = lerMatricula();
+        if (matricula == null) {
+            return;
+        }
+
+        Double salario = lerSalario();
+        if (salario == null) {
+            return;
+        }
+
+        Colaborador novoColaborador = null;
+
+        if (tipo.equals("Padrão")) {
+            novoColaborador = new ColaboradorPadrao(nome, matricula, salario);
+
+        } else if (tipo.equals("Comissionado")) {
+            
+            Double vendas = valorVendas();
+            if (vendas == null)
+            return;
+
+            Double percentual = percentualComissao();
+            if (percentual == null)
+            return;
+
+            novoColaborador = new ColaboradorComissionado(nome, matricula, salario, vendas, percentual);
+
+        } else if (tipo.equals("Produção")) {
+            
+            Integer producao = quantidadeProduzida();
+            if(producao == null)
+            return;
+
+            Double unidade = valorUnidade();
+            if (unidade == null)
+            return;
+            
+            novoColaborador = new ColaboradorProducao(nome, matricula, salario, producao, unidade);
+
+        }
+
+        try {
+            gerenciador.adicionarColaborador(novoColaborador);
+            JOptionPane.showMessageDialog(null, "Colaboador cadastrado com sucesso!");
+        
+
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
     }
 
     private String lerTipoColaborador() {
@@ -226,7 +292,6 @@ public class Cadastro {
         }
     }
 
-
     private Integer quantidadeProduzida() {
         while (true) {
             String quantidade = JOptionPane.showInputDialog(null, "Digite a quantidade a quantidade produzida: ");
@@ -281,66 +346,12 @@ public class Cadastro {
         }
     }
 
-    private void cadastrarColaborador() {
-        String tipo = lerTipoColaborador();
-        if (tipo == null) {
-            return;
+    private void listarColaboradores() {
+        List<Colaborador> colaboradores = gerenciador.getColaboradores();
+
+        System.out.println("--- Lista de Colaboradores ---");
+        for (Colaborador colaborador : colaboradores) {
+            System.out.println(colaborador);
         }
-
-        String nome = lerNome();
-        if (nome == null) {
-            return;
-        }
-
-        Integer matricula = lerMatricula();
-        if (matricula == null) {
-            return;
-        }
-
-        Double salario = lerSalario();
-        if (salario == null) {
-            return;
-        }
-
-        Colaborador novoColaborador = null;
-
-        if (tipo.equals("Padrão")) {
-            novoColaborador = new ColaboradorPadrao(nome, matricula, salario);
-
-        } else if (tipo.equals("Comissionado")) {
-            
-            Double vendas = valorVendas();
-            if (vendas == null)
-            return;
-
-            Double percentual = percentualComissao();
-            if (percentual == null)
-            return;
-
-            novoColaborador = new ColaboradorComissionado(nome, matricula, salario, vendas, percentual);
-
-        } else if (tipo.equals("Produção")) {
-            
-            Integer producao = quantidadeProduzida();
-            if(producao == null)
-            return;
-
-            Double unidade = valorUnidade();
-            if (unidade == null)
-            return;
-            
-            novoColaborador = new ColaboradorProducao(nome, matricula, salario, producao, unidade);
-
-        }
-
-        try {
-            gerenciador.adicionarColaborador(novoColaborador);
-            JOptionPane.showMessageDialog(null, "Colaboador cadastrado com sucesso!");
-        
-
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-
     }
 }

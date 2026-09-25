@@ -61,6 +61,7 @@ public class ColaboradorProducao extends Colaborador {
         return "Nome: " + getNome() + "\n" +
                 "Matricula: " + getMatricula() + "\n" + 
                 "Tipo de Colaborador: " + getTipoColaborador() + "\n" +
+                "Salário Base: R$ " + String.format("%.2f", getSalario()) + "\n" +
                 "Quantidade Produzida: " + String.format("%.2f", quantidadeProduzida) + "\n" +
                 "Valor por Unidade: R$ " + String.format("%.2f", valorUnidade) + "\n" +
                 "Produtividade: R$ " + String.format("%.2f", getProdutividade()) + "\n" +
