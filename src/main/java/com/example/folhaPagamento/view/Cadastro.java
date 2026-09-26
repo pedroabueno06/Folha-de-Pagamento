@@ -9,10 +9,13 @@ import com.example.folhaPagamento.model.ColaboradorComissionado;
 import com.example.folhaPagamento.model.ColaboradorPadrao;
 import com.example.folhaPagamento.model.ColaboradorProducao;
 import com.example.folhaPagamento.repositorio.GerenciadorColaboradores;
+import com.example.folhaPagamento.service.Relatorio;
 
 public class Cadastro {
 
     private GerenciadorColaboradores gerenciador;
+    private Relatorio relatorio = new Relatorio();
+
 
     public Cadastro(GerenciadorColaboradores gerenciador) {
         this.gerenciador = gerenciador;
@@ -37,6 +40,7 @@ public class Cadastro {
                 colaboradorRemovido();
                     break;
                 case 4: //Gerar Folha de pagamento
+                gerarFolhaPagamentoDetalhada();
                     break;
                 case 5:
                 case JOptionPane.CLOSED_OPTION:
@@ -286,7 +290,7 @@ public class Cadastro {
                 return comissao;
 
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Percentual de comissão inválido! O percentual de suas vendas não pode possuir vírgulas, apenas pontos (ex: 1.5).",
+                JOptionPane.showMessageDialog(null, "Percentual de comissão inválido! O percentual da sua comissão não pode possuir vírgulas, apenas pontos (ex: 1.5).",
                                             "", JOptionPane.ERROR_MESSAGE);
                 continue;
             }
@@ -295,7 +299,7 @@ public class Cadastro {
 
     private Integer quantidadeProduzida() {
         while (true) {
-            String quantidade = JOptionPane.showInputDialog(null, "Digite a quantidade a quantidade produzida: ");
+            String quantidade = JOptionPane.showInputDialog(null, "Digite a quantidade produzida: ");
 
             //Verifica se o usuário encerrou o programa.
             if (quantidade == null) {
@@ -474,4 +478,20 @@ public class Cadastro {
         JOptionPane.showMessageDialog(null, "Colaborador removido com sucesso!");
     }
 
+    private void gerarFolhaPagamentoDetalhada() {
+        List<Colaborador> colaboradores = gerenciador.getColaboradores();
+
+            if (colaboradores.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nenhum colaborador cadastrado!",
+                                        "", JOptionPane.ERROR_MESSAGE);
+
+                return;
+            }
+            
+            String textoRelatorio = relatorio.relatorioDetalhado(colaboradores);
+            System.out.println(textoRelatorio);
+
+            Double totalFolha = relatorio.calcularTotalFolha(colaboradores);
+            System.out.println("Total da folha de pagamento R$ " + totalFolha);
+    }
 }

@@ -17,9 +17,10 @@ public class Relatorio {
     //Gera a folha de pagamento detalhada:
     public String relatorioDetalhado(List<Colaborador> colaboradores) {
         StringBuilder relatorio = new StringBuilder();
-            relatorio.append("--------------------------------\n");
-                relatorio.append("Folha de Pagamento Detalhada:\n");
+            relatorio.append("FOLHA DE PAGAMENTO DETALHADA:\n");
+                relatorio.append("--------------------------------\n");
                     for (Colaborador colaborador : colaboradores) {
+                        relatorio.append ("Colaborador ").append(colaborador.getTipoColaborador()).append (":").append("\n");
                         relatorio.append(colaborador.toString()).append("\n");
                         relatorio.append("--------------------------------\n");
                         
