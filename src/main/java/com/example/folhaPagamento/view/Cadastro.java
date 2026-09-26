@@ -492,6 +492,7 @@ public class Cadastro {
             System.out.println(textoRelatorio);
 
             Double totalFolha = relatorio.calcularTotalFolha(colaboradores);
-            System.out.println("Total da folha de pagamento R$ " + totalFolha);
+            System.out.println("Total da folha de pagamento: R$ " + totalFolha);
+                System.out.println("---------------------------------------");
     }
 }

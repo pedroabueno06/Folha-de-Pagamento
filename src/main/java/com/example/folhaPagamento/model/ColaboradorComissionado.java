@@ -50,7 +50,7 @@ public class ColaboradorComissionado extends Colaborador {
 
     @Override 
     public String toString() {
-        return "Nome: " + getNome() + "\n" +
+        return "\nNome: " + getNome() + "\n" +
                 "Matricula: " + getMatricula() + "\n" +
                 "Tipo de Colaborador: " + getTipoColaborador() + "\n" +
                 "Salário Base: R$ " + String.format("%.2f", getSalario()) + "\n" +

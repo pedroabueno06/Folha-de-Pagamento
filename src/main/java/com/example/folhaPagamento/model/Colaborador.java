@@ -47,10 +47,10 @@ public abstract class Colaborador {
 
     @Override
     public String toString() {
-        return "Nome: " + nome + "\n" +
+        return "\nNome: " + nome + "\n" +
                 "Matricula: " + matricula  + "\n" +
                 "Tipo de Colaborador: " + getTipoColaborador() + "\n" +
-                "Salario: R$ " + String.format("%.2f", calcularSalarioFinal()) + "\n";
+                "Salário: R$ " + String.format("%.2f", calcularSalarioFinal()) + "\n";
 
     }
 }
