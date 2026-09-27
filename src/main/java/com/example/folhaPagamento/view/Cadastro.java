@@ -31,8 +31,9 @@ public class Cadastro {
                 cadastrarColaborador();
                     break;
                 case 1: //Listar Colaboradores
-                listarColaboradores();
-                    break;
+                limparTela();
+                    listarColaboradores();
+                        break;
                 case 2: //Atualizar Colaborador
                 colaboradorAtualizado();
                     break;
@@ -40,8 +41,9 @@ public class Cadastro {
                 colaboradorRemovido();
                     break;
                 case 4: //Gerar Folha de pagamento
-                gerarFolhaPagamentoDetalhada();
-                    break;
+                limparTela();
+                    gerarFolhaPagamentoDetalhada();
+                        break;
                 case 5:
                 case JOptionPane.CLOSED_OPTION:
                     continuar = false;
@@ -193,7 +195,7 @@ public class Cadastro {
             try {
                 int numeroMatricula = Integer.parseInt(texto);
                 if (numeroMatricula < 0) {
-                    JOptionPane.showMessageDialog(null, "O número da sua matrícula não deve ser negativo!",
+                    JOptionPane.showMessageDialog(null, "O número da sua matrícula não pode ser negativo!",
                                                 "", JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
@@ -244,7 +246,7 @@ public class Cadastro {
 
     private Double valorVendas() {
         while (true) {
-            String valor = JOptionPane.showInputDialog("Digite o valor total das suas vendas (Ao invés de usar vírgula, utilize ponto ex: 1.5):");
+            String valor = JOptionPane.showInputDialog("Digite o valor total das suas vendas (Ao invés de usar vírgula, utilize ponto (ex: 1.5):");
 
             //Verifica se o usuário encerrou o programa.
             if (valor == null) {
@@ -272,7 +274,7 @@ public class Cadastro {
 
     private Double percentualComissao() {
         while (true) {
-            String percentual = JOptionPane.showInputDialog(null, "Digite o percentual das suas comissões (Ao invés de usar vírgula, utilize ponto ex: 1.5): ");
+            String percentual = JOptionPane.showInputDialog(null, "Digite o percentual da sua comissão (Ao invés de usar vírgula, utilize ponto (ex: 1.5): ");
 
             //Verifica se o usuário encerrou o programa.
             if (percentual == null) {
@@ -359,8 +361,9 @@ public class Cadastro {
                                         "", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        System.out.println("--- Lista de Colaboradores ---");
+        System.out.println("\n------------------------");
+        System.out.println("LISTA DE COLABORADORES");
+        System.out.println("------------------------\n");
         for (Colaborador colaborador : colaboradores) {
             System.out.println(colaborador);
         }
@@ -492,7 +495,13 @@ public class Cadastro {
             System.out.println(textoRelatorio);
 
             Double totalFolha = relatorio.calcularTotalFolha(colaboradores);
+            System.out.println("---------------------------------------");
             System.out.println("Total da folha de pagamento: R$ " + totalFolha);
                 System.out.println("---------------------------------------");
+    }
+
+    private void limparTela() {
+        System.out.print("\033[H\033[2J");
+            System.out.flush();
     }
 }

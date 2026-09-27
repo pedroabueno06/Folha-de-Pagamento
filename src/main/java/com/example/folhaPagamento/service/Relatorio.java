@@ -39,14 +39,14 @@ public class Relatorio {
 
             relatorio.append("\n-------------------\n");
                 relatorio.append("COLABORADOR PADRÃO\n");
-                    relatorio.append("-------------------");
+                    relatorio.append("-------------------\n");
                         for (Colaborador colaborador : padrao) {
                             relatorio.append(colaborador.toString()).append("\n");
                                 relatorio.append("-------------------------\n");
                             }
                     
                     relatorio.append("COLABORADOR COMISSIONADO\n");
-                        relatorio.append("-------------------------");
+                        relatorio.append("-------------------------\n");
                             for (Colaborador colaborador : comissionado) {
                                 relatorio.append(colaborador.toString()).append("\n");
                                     relatorio.append("---------------------\n");
@@ -54,10 +54,10 @@ public class Relatorio {
                             }
 
                     relatorio.append("COLABORADOR PRODUÇÃO\n");
-                        relatorio.append("---------------------");
+                        relatorio.append("---------------------\n");
                             for (Colaborador colaborador : producao) {
                                 relatorio.append(colaborador.toString()).append("\n");
-                                    relatorio.append("---------------------------------------");
+                                    relatorio.append("---------------------------------------\ns");
 
                             }
 

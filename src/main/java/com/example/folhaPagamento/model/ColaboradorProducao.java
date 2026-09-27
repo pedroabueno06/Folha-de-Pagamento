@@ -58,8 +58,8 @@ public class ColaboradorProducao extends Colaborador {
 
     @Override 
     public String toString() {
-        return "\nNome: " + getNome() + "\n" +
-                "Matricula: " + getMatricula() + "\n" + 
+        return "Nome: " + getNome() + "\n" +
+                "Matrícula: " + getMatricula() + "\n" + 
                 "Tipo de Colaborador: " + getTipoColaborador() + "\n" +
                 "Salário Base: R$ " + String.format("%.2f", getSalario()) + "\n" +
                 "Quantidade Produzida: " + String.format("%.2f", quantidadeProduzida) + "\n" +

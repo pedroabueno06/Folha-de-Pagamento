@@ -13,7 +13,7 @@ public abstract class Colaborador {
         }
 
         if(salario < 0) {
-            throw new IllegalArgumentException("Salário inválido! Seu salário não pode ser negativo.");
+            throw new IllegalArgumentException("Salário Inválido! Seu salário não pode ser negativo.");
         }
         
         this.nome = nome;
@@ -47,8 +47,8 @@ public abstract class Colaborador {
 
     @Override
     public String toString() {
-        return "\nNome: " + nome + "\n" +
-                "Matricula: " + matricula  + "\n" +
+        return "Nome: " + nome + "\n" +
+                "Matrícula: " + matricula  + "\n" +
                 "Tipo de Colaborador: " + getTipoColaborador() + "\n" +
                 "Salário: R$ " + String.format("%.2f", calcularSalarioFinal()) + "\n";
 

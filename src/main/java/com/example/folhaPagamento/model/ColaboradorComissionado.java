@@ -7,7 +7,7 @@ public class ColaboradorComissionado extends Colaborador {
     public ColaboradorComissionado(String nome, int matricula, double salario, double valorVendas, double percentualComissao) {
         super(nome, matricula, salario);
         if (valorVendas < 0) {
-            throw new IllegalArgumentException("Valor de vendas invalido! Seu valor de vendas não pode ser negativo.");
+            throw new IllegalArgumentException("Valor de vendas inválido! Seu valor de vendas não pode ser negativo.");
         }
 
         if (percentualComissao < 0) {
@@ -32,7 +32,7 @@ public class ColaboradorComissionado extends Colaborador {
 
     public void setValorVendas(double valorVendas) {
         if (valorVendas < 0) {
-            throw new IllegalArgumentException("Valor de vendas invalido! Seu valor de vendas não pode ser negativo.");
+            throw new IllegalArgumentException("Valor de vendas inválido! Seu valor de vendas não pode ser negativo.");
         }
         this.valorVendas = valorVendas;
     }
@@ -50,8 +50,8 @@ public class ColaboradorComissionado extends Colaborador {
 
     @Override 
     public String toString() {
-        return "\nNome: " + getNome() + "\n" +
-                "Matricula: " + getMatricula() + "\n" +
+        return "Nome: " + getNome() + "\n" +
+                "Matrícula: " + getMatricula() + "\n" +
                 "Tipo de Colaborador: " + getTipoColaborador() + "\n" +
                 "Salário Base: R$ " + String.format("%.2f", getSalario()) + "\n" +
                 "Valor de Vendas: R$ " + String.format("%.2f", valorVendas) + "\n" +
