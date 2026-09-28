@@ -25,9 +25,9 @@ public class ColaboradorComissionado extends Colaborador {
     public double getPercentualComissao() {
         return percentualComissao;
     }
-
+    
     public double getComissao() {
-        return (valorVendas * percentualComissao) /100;
+        return (valorVendas * percentualComissao) /100; //Fórmula para calcula a comissão do colaborador comissionado
     }
 
     public void setValorVendas(double valorVendas) {
@@ -40,7 +40,7 @@ public class ColaboradorComissionado extends Colaborador {
     @Override
     public double calcularSalarioFinal() {
         double comissao = (valorVendas * percentualComissao) /100;
-        return getSalario() + comissao;
+        return getSalario() + comissao; //Fórmula para calcular o salário final do colaborador comissionado
     }
 
     @Override

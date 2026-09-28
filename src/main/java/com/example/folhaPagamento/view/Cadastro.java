@@ -21,9 +21,11 @@ public class Cadastro {
         this.gerenciador = gerenciador;
     }
 
+    //Inicia tela do JOptionPane
     public void iniciar() {
         boolean continuar = true;
 
+        //Loop com as opções em relação a folha de pagamento
         while (continuar) {
             int escolha = exibirMenu();
             switch (escolha) {
@@ -54,6 +56,7 @@ public class Cadastro {
         }
     }
 
+    //Opções mostradas ao usuário
     private int exibirMenu() {
         Object[] opcoes = {"Cadastrar Colaborador",
             "Listar Colaboradores",
@@ -72,6 +75,7 @@ public class Cadastro {
                 opcoes[0]);
     }
 
+    //Metodo para o usuário cadastrar um tipo de colaborador
     private void cadastrarColaborador() {
         String tipo = lerTipoColaborador();
         if (tipo == null) {
@@ -134,6 +138,7 @@ public class Cadastro {
 
     }
 
+    //Programa lê o tipo de colaborador e dependendo do tipo  pede os respectivos dados
     private String lerTipoColaborador() {
         String[] opcoes = {"Padrão", "Comissionado", "Produção"};
 
@@ -229,6 +234,7 @@ public class Cadastro {
             try {
                 double salario = Double.parseDouble(texto);
 
+                //Verifica se o salário do colaborador não é negativo
                 if (salario < 0) {
                     JOptionPane.showMessageDialog(null, "Salário inválido! Seu salário não pode ser negativo.",
                                                 "", JOptionPane.ERROR_MESSAGE);
@@ -256,6 +262,7 @@ public class Cadastro {
             try {
                 double vendas = Double.parseDouble(valor);
 
+                //Verifica se o valor das vendas do colaborador não é negativo
                 if (vendas < 0) {
                     JOptionPane.showMessageDialog(null, "Valor de vendas inválido! Seu valor de vendas não pode ser negativo.",
                                                 "", JOptionPane.ERROR_MESSAGE);
@@ -284,6 +291,7 @@ public class Cadastro {
             try {
                 double comissao = Double.parseDouble(percentual);
 
+                //Verifica se o percentual de comissão do colaborador não é negativo
                 if (comissao < 0) {
                     JOptionPane.showMessageDialog(null, "Percentual de comsissão inválido! O percentual de suas vendas não pode ser negativo.",
                                                 "", JOptionPane.ERROR_MESSAGE);
@@ -311,6 +319,7 @@ public class Cadastro {
             try {
                 int producao = Integer.parseInt(quantidade);
 
+                //Verifica se a quantidade produzida do colaborador não é negativa
                 if (producao < 0) {
                     JOptionPane.showMessageDialog(null, "Quantidade produzida inválida! Sua quantidade produzida não pode ser negativa.",
                                             "", JOptionPane.ERROR_MESSAGE);
@@ -327,7 +336,7 @@ public class Cadastro {
     }
 
     private Double valorUnidade() {
-        while (true) { 
+        while (true) {
             String valor = JOptionPane.showInputDialog(null, "Digite o valor das unidades produzidas (Ao invés de usar vírgula, utilize ponto (ex: 1.5): ");
 
             //Verifica se o usuário encerrou o programa.
@@ -338,6 +347,7 @@ public class Cadastro {
             try {
                 double unidade = Double.parseDouble(valor);
 
+                //Verifica se o valor de unidades produzidas do colaborador não é negativo
                 if (unidade < 0) {
                     JOptionPane.showMessageDialog(null, "Valor de unidade produzida inválido! O valor não pode ser negativo.",
                                             "", JOptionPane.ERROR_MESSAGE);
@@ -353,9 +363,11 @@ public class Cadastro {
         }
     }
 
+    //Método que lista todos os colaboradores castradaos no sistema
     private void listarColaboradores() {
         List<Colaborador> colaboradores = gerenciador.getColaboradores();
 
+        //Método que verifica se tem colaboradores castrados no sistema e se não tiver retorna a mensagem abaixo
         if (colaboradores.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nenhum colaborador cadastrado!",
                                         "", JOptionPane.ERROR_MESSAGE);
@@ -389,6 +401,7 @@ public class Cadastro {
                 
                 }
 
+                //Método que verifica se a matrícula do colaborador já foi cadastrada
                 if(!gerenciador.matriculaExistente(numeroMatricula)) {
                     JOptionPane.showMessageDialog(null, "Matrícula inválida! Nenhum colaborador foi encontrado com este número de matrícula.",
                                                 "", JOptionPane.ERROR_MESSAGE);
@@ -407,47 +420,46 @@ public class Cadastro {
     }
 
     private void colaboradorAtualizado() {
-
-            Integer matricula = lerMatriculaExistente();
+        Integer matricula = lerMatriculaExistente();
             if (matricula == null) {
                 return;
             }
 
-            String tipo = lerTipoColaborador();
+        String tipo = lerTipoColaborador();
             if(tipo == null) {
                 return;
             }
 
-            String nome = lerNome();
+        String nome = lerNome();
             if(nome == null) {
                 return;
             }
 
-            Colaborador atualizarColaborador = null;
+        Colaborador atualizarColaborador = null;
 
-            Double salario = lerSalario();
+        Double salario = lerSalario();
             if (salario == null) {
                 return;
             }
 
-            if (tipo.equals("Padrão")) {
-                atualizarColaborador = new ColaboradorPadrao(nome, matricula, salario);
+        if (tipo.equals("Padrão")) {
+            atualizarColaborador = new ColaboradorPadrao(nome, matricula, salario);
             
-            } else if (tipo.equals("Comissionado")) {
+        } else if (tipo.equals("Comissionado")) {
 
-                Double vendas = valorVendas();
+            Double vendas = valorVendas();
                 if (vendas == null) {
                     return;
                 }
 
-                Double percentual = percentualComissao();
+            Double percentual = percentualComissao();
                 if (percentual == null) {
                     return;
                 }
 
-                atualizarColaborador = new ColaboradorComissionado(nome, matricula, salario, vendas, percentual);
+            atualizarColaborador = new ColaboradorComissionado(nome, matricula, salario, vendas, percentual);
                 
-            }
+        }
 
             if(tipo.equals("Produção")) {
 
@@ -470,6 +482,7 @@ public class Cadastro {
             }
     }
 
+    //Método para remover o colaborador do sistema
     private void colaboradorRemovido() {
         Integer matricula = lerMatriculaExistente();
 

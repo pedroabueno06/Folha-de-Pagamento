@@ -47,8 +47,8 @@ public class ColaboradorProducao extends Colaborador {
 
     @Override 
     public double calcularSalarioFinal() {
-        double produtividade = (quantidadeProduzida * valorUnidade);
-        return getSalario() + produtividade;
+        double produtividade = (quantidadeProduzida * valorUnidade); //Fórmula para calcular o valor da produtividade do colaborador de produção
+        return getSalario() + produtividade; //Fórmula pra calcular o salário do colaborador de produção
     }
 
     @Override 

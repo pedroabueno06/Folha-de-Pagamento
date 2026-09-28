@@ -17,7 +17,9 @@ public class Relatorio {
 
     //Gera a folha de pagamento detalhada:
     public String relatorioDetalhado(List<Colaborador> colaboradores) {
-        List<Colaborador> padrao =  new ArrayList<>();
+
+        //Listas que separam os colaboradores em seus devidos tipos para a geração da folha de pagamento
+        List<Colaborador> padrao =  new ArrayList<>(); 
         List<Colaborador> comissionado = new ArrayList<>();
         List<Colaborador> producao = new ArrayList<>();
 
@@ -29,7 +31,7 @@ public class Relatorio {
                 comissionado.add(colaborador);
 
             } else {
-                producao.add(colaborador);
+                producao.add(colaborador); //Colaborador de produção está dentor apenas dentor de um else pois se o usuário não cadastro o colaborador em outro tipo, sobrou apenas o comissionado na geração da folha de pagamento
             }
         }
         StringBuilder relatorio = new StringBuilder();

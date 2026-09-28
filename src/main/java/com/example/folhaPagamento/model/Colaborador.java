@@ -8,10 +8,12 @@ public abstract class Colaborador {
 
     public Colaborador (String nome, int matricula, double salario) {
 
+        //Verifica se o nome do colaborador não ficou em branco 
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome Inválido! Seu nome não deve estar em branco, além de ter que informar seu nome completo.");
         }
 
+        //verifica se o salario do colaborador não é negativo
         if(salario < 0) {
             throw new IllegalArgumentException("Salário Inválido! Seu salário não pode ser negativo.");
         }
@@ -41,7 +43,7 @@ public abstract class Colaborador {
         this.nome = nome;
     }
 
-    public abstract String getTipoColaborador(); //Este método é abstrato pois cada colaborador terá seu próprio tipo e será obrigada a implementar este método.
+    public abstract String getTipoColaborador(); //Este método é abstrato pois cada colaborador terá seu próprio tipo e será obrigado a implementar este método.
 
     public abstract double calcularSalarioFinal(); //Este método é abstrato pois cada colaborador terá sua própria forma de calcular seu salário.
 
