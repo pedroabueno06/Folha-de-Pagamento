@@ -14,23 +14,23 @@ public class ConexaoBanco {
     }
 
     public static void criarTabelas() throws SQLException {
-        String sqlColaboradores = "create table if not exists colaboradores (" +
-            "matricula integer primary key, "+
-            "nome text not null, "+
-            "tipo text not null, "+
-            "salario real not null)";
+        String sqlColaboradores = "CREATE TABLE IF NOT EXISTS colaboradores (" +
+            "MATRICULA INTEGER PRIMARY KEY, "+
+            "NOME TEXT NOT NULL, "+
+            "TIPO TEXT NOT NULL, "+
+            "SALARIO REAL NOT NULL)";
 
-            String sqlComissionados = "create table if not exists comissionados (" +
-            "matricula integer primary key, " +
-            "valor_vendas real not null, " +
-            "percentual_comissao real not null, " +
-            "foreign key (matricula) references colaboradores(matricula))";
+            String sqlComissionados = "CREATE TABLE IF NOT EXISTS comissionados (" +
+            "MATRICULA INTEGER PRIMARY KEY, " +
+            "VALOR_VENDAS REAL NOT NULL, " +
+            "PERCENTUAL_COMISSAO REAL NOT NULL, " +
+            "FOREIGN KEY (matricula) REFERENCES colaboradores(matricula))";
 
-            String sqlProducao = "create table if not exists producao (" +
-            "matricula integer primary key, "+
-            "quantidade_produzida real not null, "+
-            "valor_unidade real not null, "+
-            "foreign key (matricula) references colaboradores(matricula))";
+            String sqlProducao = "CREATE TABLE IF NOT EXISTS producao (" +
+            "MATRICULA INTEGER PRIMARY KEY, "+
+            "QUANTIDADE_PRODUZIDA REAL NOT NULL, "+
+            "VALOR_UNIDADE REAL NOT NULL, "+
+            "FOREIGN KEY (matricula) REFERENCES colaboradores(matricula))";
 
         try (Connection connection = getConnection();
             Statement statement = connection.createStatement()) {

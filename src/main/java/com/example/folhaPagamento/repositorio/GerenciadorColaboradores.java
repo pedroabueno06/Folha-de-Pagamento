@@ -1,5 +1,6 @@
 package com.example.folhaPagamento.repositorio;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,18 +20,11 @@ public class GerenciadorColaboradores {
         return false;
     }
 
-    //verifica se a matrícula do colaborador já foi castrada
-    public boolean matriculaExistente(int matricula) {
-        for (Colaborador colaborador : colaboradores) {
-            if (colaborador.getMatricula() == matricula) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     //Para adicionar um novo colaborador é necessário que a sua matrícula não esteja castrada no sistema
-    public void adicionarColaborador (Colaborador colaborador) {
+    public void adicionarColaborador (Colaborador colaborador) throws SQLException {
+        String sqlBase = "INSERT INTO colaboradores (matricula, nome, tipo, salario) VALUES (?, ?, ?, ?)"; //Foi colocado ?, ou seja, com posições em branco dentro de values por questões de maior segurança e fazer com que os dados sejam enviados ao banco no formato correto
+        String sqlComisisonados = "INSERT INTO comissionados (matricula, valor_vendas, percentual_comissao) VALUES (?, ?, ?)";
+        String sqlProducao = "INSERT INTO producao (matricula, quantidade_produzida, valor_unidade) VALUES (?, ?, ?)";
         if (matriculaExistente (colaborador.getMatricula())) {
             throw new IllegalArgumentException("Matrícula Inválida! Digite um número de matrícula que não esteja em uso.");
         }
