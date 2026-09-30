@@ -396,6 +396,7 @@ public class Cadastro {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar listar os colaboradores cadastrados! Por favor tente novamente." + e.getMessage(),
                                             "", JOptionPane.ERROR_MESSAGE);
         }
+        
     }
 
     public Integer lerMatriculaExistente() {
