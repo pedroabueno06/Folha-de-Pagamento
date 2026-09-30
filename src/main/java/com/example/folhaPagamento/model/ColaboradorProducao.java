@@ -1,7 +1,7 @@
 package com.example.folhaPagamento.model;
 
 public class ColaboradorProducao extends Colaborador {
-    private double quantidadeProduzida;
+    private int quantidadeProduzida;
     private double valorUnidade;
 
     public ColaboradorProducao (String nome, int matricula, double salario, int quantidadeProduzida, double valorUnidade) {
@@ -19,7 +19,7 @@ public class ColaboradorProducao extends Colaborador {
         this.valorUnidade = valorUnidade;
     }
 
-    public double getQuantidadeProduzida() {
+    public int getQuantidadeProduzida() {
         return quantidadeProduzida;
     }
 

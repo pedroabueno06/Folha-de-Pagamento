@@ -69,7 +69,7 @@ public class GerenciadorColaboradores {
 
                         try (PreparedStatement statementProducao = connetion.prepareStatement(sqlProducao)) {
                             statementProducao.setInt(1, colaboradorProducao.getMatricula());
-                            statementProducao.setDouble(2, colaboradorProducao.getQuantidadeProduzida());
+                            statementProducao.setInt(2, colaboradorProducao.getQuantidadeProduzida());
                             statementProducao.setDouble(3, colaboradorProducao.getValorUnidade());
                             statementProducao.executeUpdate();
                         }
