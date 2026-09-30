@@ -59,7 +59,7 @@ public class Relatorio {
                         relatorio.append("---------------------\n");
                             for (Colaborador colaborador : producao) {
                                 relatorio.append(colaborador.toString()).append("\n");
-                                    relatorio.append("---------------------------------------\ns");
+                                    relatorio.append("---------------------------------------\n");
 
                             }
 
