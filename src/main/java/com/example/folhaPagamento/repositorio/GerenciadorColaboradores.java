@@ -2,6 +2,7 @@ package com.example.folhaPagamento.repositorio;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 import com.example.folhaPagamento.dao.ConexaoBanco;
 import com.example.folhaPagamento.model.Colaborador;
 import com.example.folhaPagamento.model.ColaboradorComissionado;
+import com.example.folhaPagamento.model.ColaboradorPadrao;
 import com.example.folhaPagamento.model.ColaboradorProducao;
 public class GerenciadorColaboradores {
     
@@ -27,11 +29,12 @@ public class GerenciadorColaboradores {
 
     //Para adicionar um novo colaborador é necessário que a sua matrícula não esteja castrada no sistema
     public void adicionarColaborador (Colaborador colaborador) throws SQLException {
-        String sqlBase = "INSERT INTO colaboradores (matricula, nome, tipo, salario) VALUES (?, ?, ?, ?)"; //Foi colocado ?, ou seja, com posições em branco dentro de values por questões de maior segurança e fazer com que os dados sejam enviados ao banco no formato correto
-        String sqlComisisonados = "INSERT INTO comissionados (matricula, valor_vendas, percentual_comissao) VALUES (?, ?, ?)";
-        String sqlProducao = "INSERT INTO producao (matricula, quantidade_produzida, valor_unidade) VALUES (?, ?, ?)";
         
-Connection connetion = ConexaoBanco.getConnection();
+        //Foi colocado ?, ou seja, uma posições em branco dentro de values por questões de maior segurança e fazer com que os dados sejam enviados ao banco no formato correto
+        String sqlBase = "INSERT INTO colaboradores (matricula, nome, tipo, salario) VALUES (?, ?, ?, ?)";
+
+        Connection connetion = ConexaoBanco.getConnection();
+
             try {
                 connetion.setAutoCommit(false);
 
@@ -42,7 +45,10 @@ Connection connetion = ConexaoBanco.getConnection();
                     statementBase.setDouble(4, colaborador.getSalario());
                     statementBase.executeUpdate();
 
-                    //É feito instanceof pois ao cadastrar um colaborador o programa verificara se o mesmo é do tipo comissionado ou produção para ser colocado em sua respectiva tabela
+                    //Foi colocado ?, ou seja, uma posições em branco dentro de values por questões de maior segurança e fazer com que os dados sejam enviados ao banco no formato correto
+                    String sqlComisisonados = "INSERT INTO comissionados (matricula, valor_vendas, percentual_comissao) VALUES (?, ?, ?)";
+
+                    //É feito instanceof pois ao cadastrar um colaborador o programa verifica se o mesmo é do tipo comissionado ou produção para ser colocado em sua respectiva tabela
                     if (colaborador instanceof ColaboradorComissionado) {
                         ColaboradorComissionado colaboradorComissionado = (ColaboradorComissionado) colaborador;
 
@@ -54,6 +60,9 @@ Connection connetion = ConexaoBanco.getConnection();
                         }
                     }
 
+                    //Foi colocado ?, ou seja, uma posições em branco dentro de values por questões de maior segurança e fazer com que os dados sejam enviados ao banco no formato correto
+                    String sqlProducao = "INSERT INTO producao (matricula, quantidade_produzida, valor_unidade) VALUES (?, ?, ?)";
+                    
                     //É feito instanceof pois ao cadastrar um colaborador o programa verificara se o mesmo é do tipo comissionado ou produção para ser colocado em sua respectiva tabela
                     if (colaborador instanceof ColaboradorProducao) {
                         ColaboradorProducao colaboradorProducao = (ColaboradorProducao) colaborador;
@@ -75,13 +84,64 @@ Connection connetion = ConexaoBanco.getConnection();
             } finally {
                 connetion.close();
             }
-        
-        
-        
     }
 
-    public List<Colaborador> getColaboradores() {
-        return new ArrayList<>(colaboradores);
+    public List<Colaborador> getColaboradores() throws SQLException {
+        List<Colaborador> lista = new ArrayList<>();
+            String sqlPadrao = "SELECT * FROM colaboradores";
+
+            try (Connection connection = ConexaoBanco.getConnection();
+                PreparedStatement statementPadrao = connection.prepareStatement(sqlPadrao);
+                ResultSet resultSetPadrao = statementPadrao.executeQuery()) {
+
+                    while (resultSetPadrao.next()) {
+                        int matricula = resultSetPadrao.getInt("Matricula");
+                        String nome = resultSetPadrao.getString("Nome");
+                        String tipo = resultSetPadrao.getString("Tipo");
+                        Double salario = resultSetPadrao.getDouble("Salario");
+
+                        Colaborador colaborador = null;
+
+                        if (tipo.equals("Padrão")) {
+                            colaborador = new ColaboradorPadrao(nome, matricula, salario);
+
+                        //No comissionado não utilizei while pois matricula já é a chave primária na tabela comissionados, com isso só é possível termos uma linha com aquela matrícula 
+                        } else if (tipo.equals("Comissionado")) {
+                            String sqlComisionado = "SELECT * FROM comissionados WHERE matricula = ?";
+
+                            try (PreparedStatement statementComissionado = connection.prepareStatement(sqlComisionado)) {
+                                statementComissionado.setInt(1, matricula);
+
+                                try (ResultSet resultSetComissionado = statementComissionado.executeQuery()) {
+                                    if(resultSetComissionado.next()) {
+                                        double valorVendas = resultSetComissionado.getDouble("valor_vendas");
+                                        double percentualComissao = resultSetComissionado.getDouble("percentual_comissao");
+                                        colaborador = new ColaboradorComissionado(nome, matricula, salario, valorVendas, percentualComissao);
+                                    }
+                                }
+                            }
+
+                        } else if (tipo.equals("Produção")) {
+                            String sqlProducao = "SELECT * FROM producao WHERE matricula = ?";
+
+                            try (PreparedStatement statementProducao = connection.prepareStatement(sqlProducao)) {
+                                statementProducao.setInt(1, matricula);
+
+                                try (ResultSet resultSetProducao = statementProducao.executeQuery()) {
+                                    if(resultSetProducao.next()) {
+                                        int quantidadeProduzida = resultSetProducao.getInt("quantidade_produzida");
+                                        double valorUnidade = resultSetProducao.getInt("valor_unidade");
+                                        colaborador = new ColaboradorProducao(nome, matricula, salario, quantidadeProduzida, valorUnidade);
+                                    }
+                                }
+                            }
+                        }
+
+                        lista.add(colaborador);
+                    }
+            }
+            
+        return lista;
     }
 
     //Um colaborador só é removido do sistema se a matricula do mesma estiver castrada
