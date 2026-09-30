@@ -14,6 +14,7 @@ public class Main {
             System.out.println("Erro ao tentar criar as tabelas do banco de dados: " + e.getMessage());
             return; //Encerra o programa
         }
+        
         GerenciadorColaboradores gerenciador = new GerenciadorColaboradores();
         Cadastro cadastro = new Cadastro(gerenciador);
         cadastro.iniciar();

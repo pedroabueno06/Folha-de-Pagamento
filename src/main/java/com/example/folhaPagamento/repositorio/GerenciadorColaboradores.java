@@ -27,6 +27,21 @@ public class GerenciadorColaboradores {
         return false;
     }
 
+    public boolean matriculaExistente (int matricula) throws SQLException{
+        String sqlMatriculaExistente = "SELECT 1 FROM colaboradores WHERE matricula = ? LIMIT 1"; //Ter ao menos 1 linha com esta matrícula dentro da tabela
+
+              try (Connection connection = ConexaoBanco.getConnection();
+                  PreparedStatement statementMatriculaExistente = connection.prepareStatement(sqlMatriculaExistente)) {
+
+                    statementMatriculaExistente.setInt(1, matricula);
+
+                        try (ResultSet resultSetMatriculaExistente = statementMatriculaExistente.executeQuery()) {
+                            //Lança true se achar ao menos uma linha com esta matricula e e false se não achar nenhuma
+                            return resultSetMatriculaExistente.next(); 
+                        }
+                }
+    }
+
     //Para adicionar um novo colaborador é necessário que a sua matrícula não esteja castrada no sistema
     public void adicionarColaborador (Colaborador colaborador) throws SQLException {
         
@@ -46,17 +61,17 @@ public class GerenciadorColaboradores {
                     statementBase.executeUpdate();
 
                     //Foi colocado ?, ou seja, uma posições em branco dentro de values por questões de maior segurança e fazer com que os dados sejam enviados ao banco no formato correto
-                    String sqlComisisonados = "INSERT INTO comissionados (matricula, valor_vendas, percentual_comissao) VALUES (?, ?, ?)";
+                    String sqlComisisonado = "INSERT INTO comissionados (matricula, valor_vendas, percentual_comissao) VALUES (?, ?, ?)";
 
                     //É feito instanceof pois ao cadastrar um colaborador o programa verifica se o mesmo é do tipo comissionado ou produção para ser colocado em sua respectiva tabela
                     if (colaborador instanceof ColaboradorComissionado) {
                         ColaboradorComissionado colaboradorComissionado = (ColaboradorComissionado) colaborador;
 
-                        try (PreparedStatement statementComissionados = connetion.prepareStatement(sqlComisisonados)) {
-                            statementComissionados.setInt(1, colaboradorComissionado.getMatricula());
-                            statementComissionados.setDouble(2, colaboradorComissionado.getValorVendas());
-                            statementComissionados.setDouble(3, colaboradorComissionado.getPercentualComissao());
-                            statementComissionados.executeUpdate();
+                        try (PreparedStatement statementComissionado = connetion.prepareStatement(sqlComisisonado)) {
+                            statementComissionado.setInt(1, colaboradorComissionado.getMatricula());
+                            statementComissionado.setDouble(2, colaboradorComissionado.getValorVendas());
+                            statementComissionado.setDouble(3, colaboradorComissionado.getPercentualComissao());
+                            statementComissionado.executeUpdate();
                         }
                     }
 
@@ -88,10 +103,10 @@ public class GerenciadorColaboradores {
 
     public List<Colaborador> getColaboradores() throws SQLException {
         List<Colaborador> lista = new ArrayList<>();
-            String sqlPadrao = "SELECT * FROM colaboradores";
+            String sqlBase = "SELECT * FROM colaboradores";
 
             try (Connection connection = ConexaoBanco.getConnection();
-                PreparedStatement statementPadrao = connection.prepareStatement(sqlPadrao);
+                PreparedStatement statementPadrao = connection.prepareStatement(sqlBase);
                 ResultSet resultSetPadrao = statementPadrao.executeQuery()) {
 
                     while (resultSetPadrao.next()) {
@@ -121,6 +136,7 @@ public class GerenciadorColaboradores {
                                 }
                             }
 
+                        //No produção não utilizei while pois matricula já é a chave primária na tabela comissionados, com isso só é possível termos uma linha com aquela matrícula
                         } else if (tipo.equals("Produção")) {
                             String sqlProducao = "SELECT * FROM producao WHERE matricula = ?";
 
@@ -145,14 +161,41 @@ public class GerenciadorColaboradores {
     }
 
     //Um colaborador só é removido do sistema se a matricula do mesma estiver castrada
-    public boolean removerColaborador(int matricula) {
-        for (Colaborador colaborador : colaboradores) {
-            if (colaborador.getMatricula() == matricula) {
-                colaboradores.remove(colaborador);
-                return true;
-            }
+    public boolean removerColaborador(int matricula) throws SQLException {
+
+        Connection connection = ConexaoBanco.getConnection();
+
+        try {
+            connection.setAutoCommit(false);
+
+                int linhasApagadas;
+                String sqlComissionado = "DELETE FROM comissionados WHERE matricula = ?";
+                    try (PreparedStatement statementComissionado = connection.prepareStatement(sqlComissionado)) {
+                        statementComissionado.setInt(1, matricula);
+                            linhasApagadas = statementComissionado.executeUpdate();
+
+                        String sqlProducao = "DELETE FROM producao WHERE matricula = ?";
+                            try (PreparedStatement statementProducao = connection.prepareStatement(sqlProducao)) {
+                                statementProducao.setInt(1, matricula);
+                                    linhasApagadas = statementProducao.executeUpdate();
+                            }
+
+                        String sqlBase = "DELETE FROM colaboradores WHERE matricula = ?";
+                            try (PreparedStatement statementBase = connection.prepareStatement(sqlBase)) {
+                                statementBase.setInt(1, matricula);
+                                    linhasApagadas = statementBase.executeUpdate();
+                            }
+                    }
+                    connection.commit();
+                    //este return lança um true se alguma linha da tabela de Colaboradores foi apagada por conta da matrícula existir e um false se nada for apagado
+                        return linhasApagadas > 0;
+            
+        } catch (SQLException e) {
+            connection.rollback();
+                throw e;
+        } finally {
+            connection.close();
         }
-        return false;
     }
 
     public void atualizarColaborador(int antigaMatricula, Colaborador novoColaborador) throws SQLException {
@@ -166,3 +209,4 @@ public class GerenciadorColaboradores {
         adicionarColaborador(novoColaborador);
     }
 }
+

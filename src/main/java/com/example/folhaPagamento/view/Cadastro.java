@@ -1,5 +1,6 @@
 package com.example.folhaPagamento.view;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -134,8 +135,11 @@ public class Cadastro {
         
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
-        }
 
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados! Por favor tente novamente." + e.getMessage(),
+                                        "", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     //Programa lê o tipo de colaborador e dependendo do tipo  pede os respectivos dados
@@ -216,6 +220,11 @@ public class Cadastro {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Matrícula inválida! Digite um número inteiro.",
                                             "", JOptionPane.ERROR_MESSAGE);
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar ler a matrícula! Por favor tente novamente." + e.getMessage(),
+                                            "", JOptionPane.ERROR_MESSAGE);
+                continue;
             }
         }
     }
@@ -365,19 +374,27 @@ public class Cadastro {
 
     //Método que lista todos os colaboradores castradaos no sistema
     private void listarColaboradores() {
-        List<Colaborador> colaboradores = gerenciador.getColaboradores();
+        
+        try {
+            List<Colaborador> colaboradores = gerenciador.getColaboradores();
 
-        //Método que verifica se tem colaboradores castrados no sistema e se não tiver retorna a mensagem abaixo
-        if (colaboradores.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nenhum colaborador cadastrado!",
-                                        "", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        System.out.println("\n------------------------");
-        System.out.println("LISTA DE COLABORADORES");
-        System.out.println("------------------------\n");
-        for (Colaborador colaborador : colaboradores) {
-            System.out.println(colaborador);
+            //Método que verifica se tem colaboradores castrados no sistema e se não tiver retorna a mensagem abaixo
+            if (colaboradores.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nenhum colaborador cadastrado!",
+                                            "", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            System.out.println("\n------------------------");
+            System.out.println("LISTA DE COLABORADORES");
+            System.out.println("------------------------\n");
+            
+            for (Colaborador colaborador : colaboradores) {
+                System.out.println(colaborador);
+            }
+
+        } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar listar os colaboradores cadastrados! Por favor tente novamente." + e.getMessage(),
+                                            "", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -415,6 +432,10 @@ public class Cadastro {
                 JOptionPane.showMessageDialog(null, "Matrícula Inválida! Digite um número inteiro",
                                             "", JOptionPane.ERROR_MESSAGE);
             
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar ler a existência da matrícula! Por favor tente novamente." + e.getMessage(),
+                                            "", JOptionPane.ERROR_MESSAGE);
+                continue;
             }
         }
     }
@@ -477,8 +498,13 @@ public class Cadastro {
             try {
                 gerenciador.atualizarColaborador(matricula,atualizarColaborador);
                     JOptionPane.showMessageDialog(null, "Colaborador atualizado com sucesso!");
+
             } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao tentar atualizar o cadastro do colaborador! Por favor tente novamente." + e.getMessage(),
+                                            "", JOptionPane.ERROR_MESSAGE);
             }
     }
 
@@ -490,27 +516,39 @@ public class Cadastro {
             return;
         }
 
-        gerenciador.removerColaborador(matricula);
-        JOptionPane.showMessageDialog(null, "Colaborador removido com sucesso!");
+        try {
+            gerenciador.removerColaborador(matricula);
+                JOptionPane.showMessageDialog(null, "Colaborador removido com sucesso!");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar remover o cadastro do colaborador! Por favor tente novamente." + e.getMessage(),
+                                            "", JOptionPane.ERROR_MESSAGE);
+            }
     }
 
     private void gerarFolhaPagamentoDetalhada() {
-        List<Colaborador> colaboradores = gerenciador.getColaboradores();
+        try {
+            List<Colaborador> colaboradores = gerenciador.getColaboradores();
 
-            if (colaboradores.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Nenhum colaborador cadastrado!",
-                                        "", JOptionPane.ERROR_MESSAGE);
+                if (colaboradores.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Nenhum colaborador cadastrado!",
+                                            "", JOptionPane.ERROR_MESSAGE);
 
-                return;
-            }
-            
-            String textoRelatorio = relatorio.relatorioDetalhado(colaboradores);
-            System.out.println(textoRelatorio);
+                    return;
+                }
+                
+                String textoRelatorio = relatorio.relatorioDetalhado(colaboradores);
+                System.out.println(textoRelatorio);
 
-            Double totalFolha = relatorio.calcularTotalFolha(colaboradores);
-            System.out.println("---------------------------------------");
-            System.out.println("Total da folha de pagamento: R$ " + totalFolha);
+                Double totalFolha = relatorio.calcularTotalFolha(colaboradores);
                 System.out.println("---------------------------------------");
+                System.out.println("Total da folha de pagamento: R$ " + totalFolha);
+                    System.out.println("---------------------------------------");
+        
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar gerar a folha de pagamento! Por favor tente novamente." + e.getMessage(),
+                                            "", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void limparTela() {
