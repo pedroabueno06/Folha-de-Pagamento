@@ -358,7 +358,7 @@ public class Cadastro {
 
                 //Verifica se o valor de unidades produzidas do colaborador não é negativo
                 if (unidade < 0) {
-                    JOptionPane.showMessageDialog(null, "Valor por unidade produzida produzida inválido! O valor não pode ser negativo.",
+                    JOptionPane.showMessageDialog(null, "Valor por unidade produzida inválido! O valor não pode ser negativo.",
                                             "", JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
