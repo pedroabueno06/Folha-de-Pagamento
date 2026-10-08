@@ -346,7 +346,7 @@ public class Cadastro {
 
     private Double valorUnidade() {
         while (true) {
-            String valor = JOptionPane.showInputDialog(null, "Digite o valor das unidades produzidas (Ao invés de usar vírgula, utilize ponto (ex: 1.5): ");
+            String valor = JOptionPane.showInputDialog(null, "Digite o valor por unidades produzidas (Ao invés de usar vírgula, utilize ponto (ex: 1.5): ");
 
             //Verifica se o usuário encerrou o programa.
             if (valor == null) {
@@ -358,14 +358,14 @@ public class Cadastro {
 
                 //Verifica se o valor de unidades produzidas do colaborador não é negativo
                 if (unidade < 0) {
-                    JOptionPane.showMessageDialog(null, "Valor de unidade produzida inválido! O valor não pode ser negativo.",
+                    JOptionPane.showMessageDialog(null, "Valor por unidade produzida produzida inválido! O valor não pode ser negativo.",
                                             "", JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
                 return unidade;
 
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Valor de unidade produzida inválido! O valor de unidade não pode possuir vírgulas.",
+                JOptionPane.showMessageDialog(null, "Valor por unidade produzida inválido! O valor por unidade não pode possuir vírgulas.",
                                             "", JOptionPane.ERROR_MESSAGE);
                 continue;
             }
