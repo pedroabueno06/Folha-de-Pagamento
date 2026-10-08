@@ -146,7 +146,7 @@ public class GerenciadorColaboradores {
                                 try (ResultSet resultSetProducao = statementProducao.executeQuery()) {
                                     if(resultSetProducao.next()) {
                                         int quantidadeProduzida = resultSetProducao.getInt("quantidade_produzida");
-                                        double valorUnidade = resultSetProducao.getInt("valor_unidade");
+                                        double valorUnidade = resultSetProducao.getDouble("valor_unidade");
                                         colaborador = new ColaboradorProducao(nome, matricula, salario, quantidadeProduzida, valorUnidade);
                                     }
                                 }

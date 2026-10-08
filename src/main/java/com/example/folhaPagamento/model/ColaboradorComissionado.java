@@ -1,5 +1,4 @@
 package com.example.folhaPagamento.model;
-
 public class ColaboradorComissionado extends Colaborador {
     private double valorVendas;
     private double percentualComissao;
@@ -55,7 +54,7 @@ public class ColaboradorComissionado extends Colaborador {
                 "Tipo de Colaborador: " + getTipoColaborador() + "\n" +
                 "Salário Base: R$ " + String.format("%.2f", getSalario()) + "\n" +
                 "Valor de Vendas: R$ " + String.format("%.2f", valorVendas) + "\n" +
-                "Percentual de Comissão: " + String.format("%.2f", percentualComissao / 100) + "%" + "\n" +
+                "Percentual de Comissão: " + String.format("%.2f", percentualComissao) + "%" + "\n" +
                 "Comissão: R$ " + String.format("%.2f", getComissao()) + "\n" + 
                 "Salário Final: R$ " + String.format("%.2f", calcularSalarioFinal()) + "\n";
     }

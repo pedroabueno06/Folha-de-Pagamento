@@ -1,5 +1,4 @@
 package com.example.folhaPagamento.model;
-
 public class ColaboradorProducao extends Colaborador {
     private int quantidadeProduzida;
     private double valorUnidade;

@@ -249,6 +249,14 @@ public class Cadastro {
                                                 "", JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
+
+                //Verifica se salário do colaborador não é infinito
+                if (Double.isInfinite(salario)) {
+                    JOptionPane.showMessageDialog(null, "Salário inválido! Seu salário não pode ser infinito.",
+                                                "", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
+
                 return salario;
 
             } catch (NumberFormatException e) {
@@ -277,6 +285,14 @@ public class Cadastro {
                                                 "", JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
+
+                //Verifica se o valor das vendas do colaborador não é infinito
+                if (Double.isInfinite(vendas)) {
+                    JOptionPane.showMessageDialog(null, "Valor de vendas inválido! Seu valor de vendas não pode ser infinito.",
+                                                "", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
+
                 return vendas;
 
             } catch (NumberFormatException e) {
@@ -306,6 +322,14 @@ public class Cadastro {
                                                 "", JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
+
+                //Verifica se o percentual de comissão do colaborador não é infinito
+                if (Double.isInfinite(comissao)) {
+                    JOptionPane.showMessageDialog(null, "Percentual de comissão inválido! O percentual da sua comissão não pode ser infinito.",
+                                                "", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
+
                 return comissao;
 
             } catch (NumberFormatException e) {
@@ -362,6 +386,14 @@ public class Cadastro {
                                             "", JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
+
+                //Verifica se o valor por unidade produzida do colaborador não é infinito
+                if (Double.isInfinite(unidade)) {
+                    JOptionPane.showMessageDialog(null, "Valor por unidade produzida inválido! O valor por unidade não pode ser infinito.",
+                                                "", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
+
                 return unidade;
 
             } catch (NumberFormatException e) {
