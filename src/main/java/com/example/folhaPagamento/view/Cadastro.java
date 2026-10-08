@@ -346,7 +346,7 @@ public class Cadastro {
 
     private Double valorUnidade() {
         while (true) {
-            String valor = JOptionPane.showInputDialog(null, "Digite o valor por unidades produzidas (Ao invés de usar vírgula, utilize ponto (ex: 1.5): ");
+            String valor = JOptionPane.showInputDialog(null, "Digite o valor por unidade produzida (Ao invés de usar vírgula, utilize ponto (ex: 1.5): ");
 
             //Verifica se o usuário encerrou o programa.
             if (valor == null) {
