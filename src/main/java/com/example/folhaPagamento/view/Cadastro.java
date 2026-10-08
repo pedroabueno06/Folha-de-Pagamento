@@ -131,7 +131,7 @@ public class Cadastro {
 
         try {
             gerenciador.adicionarColaborador(novoColaborador);
-            JOptionPane.showMessageDialog(null, "Colaboador cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Colaborador cadastrado com sucesso!");
         
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
