@@ -40,7 +40,7 @@ public class ColaboradorProducao extends Colaborador {
 
     public void setValorUnidade(double valorUnidade) {
         if (valorUnidade < 0) {
-            throw new IllegalArgumentException("Valor por unidade inválido! A mesmo não pode ser negativo.");
+            throw new IllegalArgumentException("Valor por unidade inválido! O mesmo não pode ser negativo.");
         }
         this.valorUnidade = valorUnidade;
     }
