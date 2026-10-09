@@ -5,7 +5,6 @@ public abstract class Colaborador {
     private String nome;
     private int matricula;
     private double salario;
-    public Object remove;
 
     public Colaborador (String nome, int matricula, double salario) {
 

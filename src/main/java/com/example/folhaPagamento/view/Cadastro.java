@@ -205,7 +205,7 @@ public class Cadastro {
             try {
                 int numeroMatricula = Integer.parseInt(texto);
                 if (numeroMatricula < 0) {
-                    JOptionPane.showMessageDialog(null, "O número da sua matrícula não pode ser negativo!",
+                    JOptionPane.showMessageDialog(null, "Matrícula inválida!O número da sua matrícula não pode ser negativo!",
                                                 "", JOptionPane.ERROR_MESSAGE);
                     continue;
                 }

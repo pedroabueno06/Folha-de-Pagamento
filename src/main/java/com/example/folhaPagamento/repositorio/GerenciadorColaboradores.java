@@ -17,16 +17,6 @@ public class GerenciadorColaboradores {
     //Adiciona o cadastro dos colaboradores dentro de um ArrayList
     private List<Colaborador> colaboradores = new ArrayList<>();
 
-    
-    public boolean nomeExistente (String nome) {
-        for (Colaborador colaborador : colaboradores) {
-            if (colaborador.getNome().equalsIgnoreCase(nome)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean matriculaExistente (int matricula) throws SQLException{
         String sqlMatriculaExistente = "SELECT 1 FROM colaboradores WHERE matricula = ? LIMIT 1"; //Ter ao menos 1 linha com esta matrícula dentro da tabela
 
