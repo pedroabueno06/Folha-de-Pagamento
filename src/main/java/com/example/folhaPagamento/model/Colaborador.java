@@ -1,4 +1,5 @@
 package com.example.folhaPagamento.model;
+import java.text.NumberFormat;
 
 public abstract class Colaborador {
     private String nome;
@@ -52,7 +53,7 @@ public abstract class Colaborador {
         return "Nome: " + nome + "\n" +
                 "Matrícula: " + matricula  + "\n" +
                 "Tipo de Colaborador: " + getTipoColaborador() + "\n" +
-                "Salário: R$ " + String.format("%.2f", calcularSalarioFinal()) + "\n";
+                "Salário: R$ " + NumberFormat.getNumberInstance().format(calcularSalarioFinal()) + "\n";
 
     }
 }

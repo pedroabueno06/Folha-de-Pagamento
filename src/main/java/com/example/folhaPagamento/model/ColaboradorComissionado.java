@@ -1,4 +1,6 @@
 package com.example.folhaPagamento.model;
+import java.text.NumberFormat;
+
 public class ColaboradorComissionado extends Colaborador {
     private double valorVendas;
     private double percentualComissao;
@@ -52,10 +54,10 @@ public class ColaboradorComissionado extends Colaborador {
         return "Nome: " + getNome() + "\n" +
                 "Matrícula: " + getMatricula() + "\n" +
                 "Tipo de Colaborador: " + getTipoColaborador() + "\n" +
-                "Salário Base: R$ " + String.format("%.2f", getSalario()) + "\n" +
-                "Valor de Vendas: R$ " + String.format("%.2f", valorVendas) + "\n" +
-                "Percentual de Comissão: " + String.format("%.2f", percentualComissao) + "%" + "\n" +
-                "Comissão: R$ " + String.format("%.2f", getComissao()) + "\n" + 
-                "Salário Final: R$ " + String.format("%.2f", calcularSalarioFinal()) + "\n";
+                "Salário Base: R$ " + NumberFormat.getNumberInstance().format(getSalario()) + "\n" +
+                "Valor de Vendas: R$ " + NumberFormat.getNumberInstance().format(valorVendas) + "\n" +
+                "Percentual de Comissão: " + NumberFormat.getNumberInstance().format(percentualComissao) + "%" + "\n" +
+                "Comissão: R$ " + NumberFormat.getNumberInstance().format(getComissao()) + "\n" + 
+                "Salário Final: R$ " + NumberFormat.getNumberInstance().format(calcularSalarioFinal()) + "\n";
     }
 }

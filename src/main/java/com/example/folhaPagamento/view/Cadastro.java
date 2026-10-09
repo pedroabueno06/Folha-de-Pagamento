@@ -1,6 +1,7 @@
 package com.example.folhaPagamento.view;
 
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -549,9 +550,17 @@ public class Cadastro {
             return;
         }
 
+         int opcao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover o colaborador?",
+                "", JOptionPane.YES_NO_OPTION);
+
+                    if (opcao != JOptionPane.YES_NO_OPTION) {
+                        return;
+                    
+                    }
         try {
             gerenciador.removerColaborador(matricula);
-                JOptionPane.showMessageDialog(null, "Colaborador removido com sucesso!");
+            
+            JOptionPane.showMessageDialog(null, "Colaborador removido com sucesso!");
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar remover o cadastro do colaborador! Por favor tente novamente." + e.getMessage(),
@@ -575,7 +584,7 @@ public class Cadastro {
 
                 Double totalFolha = relatorio.calcularTotalFolha(colaboradores);
                 System.out.println("---------------------------------------");
-                System.out.println("Total da folha de pagamento: R$ " + totalFolha);
+                System.out.println("Total da folha de pagamento: R$ " + NumberFormat.getNumberInstance().format(totalFolha));
                     System.out.println("---------------------------------------");
         
         } catch (SQLException e) {
