@@ -48,7 +48,11 @@ public class Cadastro {
                 limparTela();
                     gerarFolhaPagamentoDetalhada();
                         break;
-                case 5:
+                case 5: //Gerar Resumo da Folha de Pagamento
+                limparTela();
+                    resumoFolhaPagamento();
+                        break;
+                case 6:
                 case JOptionPane.CLOSED_OPTION:
                     continuar = false;
                     break;
@@ -65,11 +69,12 @@ public class Cadastro {
             "Atualizar Colaborador",
             "Remover Colaborador",
             "Gerar Folha de Pagamento",
+            "Gerar Resumo da Folha de Pagamento",
             "Sair"};
 
         return JOptionPane.showOptionDialog(null,
                 "Selecione a opção desejada:", //Mensagem de entrada
-                "======================================================= FOLHA DE PAGAMENTO ===================================================", //Título da janela
+                "============================================================================================= FOLHA DE PAGAMENTO =========================================================================================", //Título da janela
                 JOptionPane.DEFAULT_OPTION, //Tipo de Opção
                 JOptionPane.QUESTION_MESSAGE,
                 null,
@@ -430,6 +435,41 @@ public class Cadastro {
                                             "", JOptionPane.ERROR_MESSAGE);
         }
         
+    }
+
+    private void resumoFolhaPagamento() {
+
+        try {
+            List<Colaborador> colaboradores = gerenciador.getColaboradores();
+
+            //Método que verifica se tem colaboradores cadastrados no sistema e se não tiver retorna a mensagem abaixo
+            if (colaboradores.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nenhum colaborador cadastrado!",
+                                            "", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            System.out.println("\n-----------------------------");
+            System.out.println("RESUMO DA FOLHA DE PAGAMENTO");
+            System.out.println("-----------------------------\n");
+
+            //Método que calcula o total de colaboradores cadastrados no sistema
+            int totalColaboradores = colaboradores.size();
+            System.out.println("---------------------------------------");
+            System.out.println("Total de colaboradores cadastrados: " + totalColaboradores);
+            System.out.println("---------------------------------------\n");
+
+            Double totalFolha = relatorio.calcularTotalFolha(colaboradores);
+                System.out.println("---------------------------------------");
+                System.out.println("Total da folha de pagamento: R$ " + NumberFormat.getNumberInstance().format(totalFolha));
+                    System.out.println("---------------------------------------");
+
+
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar gerar o resumo da folha de pagamento! Por favor tente novamente.",
+                                        "", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public Integer lerMatriculaExistente() {
