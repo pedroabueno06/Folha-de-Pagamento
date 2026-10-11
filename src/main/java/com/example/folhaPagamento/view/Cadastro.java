@@ -459,12 +459,25 @@ public class Cadastro {
             System.out.println("Total de colaboradores cadastrados: " + totalColaboradores);
             System.out.println("---------------------------------------\n");
 
+            Double totalColaboradorPadrao = relatorio.calcularTotalPorTipo(colaboradores, "Padrão");
+                System.out.println("----------------------------------------------------------");
+                System.out.println("Total pago para os colaboradores do tipo Padrão: R$ " + NumberFormat.getNumberInstance().format(totalColaboradorPadrao));
+                    System.out.println("----------------------------------------------------------\n");
+
+            Double totalColaboradorComissionado = relatorio.calcularTotalPorTipo(colaboradores, "Comissionado");
+                System.out.println("----------------------------------------------------------------");
+                System.out.println("Total pago para os colaboradores do tipo Comissionado: R$ " + NumberFormat.getNumberInstance().format(totalColaboradorComissionado));
+                    System.out.println("----------------------------------------------------------------\n");
+            
+            Double totalColaboradorProducao = relatorio.calcularTotalPorTipo(colaboradores, "Produção");
+                System.out.println("------------------------------------------------------------");
+                System.out.println("Total pago para os colaboradores do tipo Produção: R$ " + NumberFormat.getNumberInstance().format(totalColaboradorProducao));
+                    System.out.println("------------------------------------------------------------\n");
+
             Double totalFolha = relatorio.calcularTotalFolha(colaboradores);
                 System.out.println("---------------------------------------");
                 System.out.println("Total da folha de pagamento: R$ " + NumberFormat.getNumberInstance().format(totalFolha));
                     System.out.println("---------------------------------------");
-
-
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar gerar o resumo da folha de pagamento! Por favor tente novamente.",

@@ -15,6 +15,17 @@ public class Relatorio {
         return total;
     }
 
+    //Método para calcular o valor total pago a cada tipo de colaborador:
+    public double calcularTotalPorTipo(List<Colaborador> colaboradores, String tipo) {
+        double total = 0;
+        for (Colaborador colaborador : colaboradores) {
+            if (colaborador.getTipoColaborador().equals(tipo)) {
+                total += colaborador.calcularSalarioFinal();
+            }
+        }
+        return total;
+    }
+
     //Gera a folha de pagamento detalhada:
     public String relatorioDetalhado(List<Colaborador> colaboradores) {
 
@@ -58,7 +69,7 @@ public class Relatorio {
                     relatorio.append("COLABORADOR PRODUÇÃO\n");
                         relatorio.append("---------------------\n");
                             for (Colaborador colaborador : producao) {
-                                relatorio.append(colaborador.toString()).append("\n");
+                                relatorio.append(colaborador.toString()).append("");
                                     relatorio.append("---------------------------------------\n");
 
                             }

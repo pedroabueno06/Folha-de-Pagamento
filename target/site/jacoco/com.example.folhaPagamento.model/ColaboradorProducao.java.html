@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ColaboradorProducao.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">demo</a> &gt; <a href="index.source.html" class="el_package">com.example.folhaPagamento.model</a> &gt; <span class="el_source">ColaboradorProducao.java</span></div><h1>ColaboradorProducao.java</h1><pre class="source lang-java linenums">package com.example.folhaPagamento.model;
+import java.text.NumberFormat;
+
+public class ColaboradorProducao extends Colaborador {
+    private int quantidadeProduzida;
+    private double valorUnidade;
+
+    public ColaboradorProducao (String nome, int matricula, double salario, int quantidadeProduzida, double valorUnidade) {
+<span class="nc" id="L9">        super(nome, matricula, salario);</span>
+
+<span class="nc bnc" id="L11" title="All 2 branches missed.">        if (quantidadeProduzida &lt; 0) {</span>
+<span class="nc" id="L12">            throw new IllegalArgumentException(&quot;Quantidade produzida inválida! A mesma não pode ser negativa.&quot;);</span>
+        }
+
+<span class="nc bnc" id="L15" title="All 2 branches missed.">        if (valorUnidade &lt; 0) {</span>
+<span class="nc" id="L16">            throw new IllegalArgumentException(&quot;Valor por unidade inválido! O mesmo não pode ser negativo.&quot;);</span>
+        }
+
+<span class="nc" id="L19">        this.quantidadeProduzida = quantidadeProduzida;</span>
+<span class="nc" id="L20">        this.valorUnidade = valorUnidade;</span>
+<span class="nc" id="L21">    }</span>
+
+    public int getQuantidadeProduzida() {
+<span class="nc" id="L24">        return quantidadeProduzida;</span>
+    }
+
+    public double getValorUnidade() {
+<span class="nc" id="L28">        return valorUnidade;</span>
+    }
+
+    public double getProdutividade() {
+<span class="nc" id="L32">        return quantidadeProduzida * valorUnidade;</span>
+    }
+
+    public void setQuantidadeProduzida(int quantidadeProduzida) {
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        if (quantidadeProduzida &lt; 0) {</span>
+<span class="nc" id="L37">            throw new IllegalArgumentException(&quot;Quantidade produzida inválida! A mesma não pode ser negativa.&quot;);</span>
+        }
+<span class="nc" id="L39">        this.quantidadeProduzida = quantidadeProduzida;</span>
+<span class="nc" id="L40">    }</span>
+
+    public void setValorUnidade(double valorUnidade) {
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (valorUnidade &lt; 0) {</span>
+<span class="nc" id="L44">            throw new IllegalArgumentException(&quot;Valor por unidade inválido! O mesmo não pode ser negativo.&quot;);</span>
+        }
+<span class="nc" id="L46">        this.valorUnidade = valorUnidade;</span>
+<span class="nc" id="L47">    }</span>
+
+    @Override 
+    public double calcularSalarioFinal() {
+<span class="nc" id="L51">        double produtividade = (quantidadeProduzida * valorUnidade); //Fórmula para calcular o valor da produtividade do colaborador de produção</span>
+<span class="nc" id="L52">        return getSalario() + produtividade; //Fórmula pra calcular o salário do colaborador de produção</span>
+    }
+
+    @Override
+    public String getTipoColaborador() {
+<span class="nc" id="L57">        return &quot;Produção&quot;;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L62">        return &quot;Nome: &quot; + getNome() + &quot;\n&quot; +</span>
+<span class="nc" id="L63">                &quot;Matrícula: &quot; + getMatricula() + &quot;\n&quot; +</span>
+<span class="nc" id="L64">                &quot;Tipo de Colaborador: &quot; + getTipoColaborador() + &quot;\n&quot; +</span>
+<span class="nc" id="L65">                &quot;Salário Base: R$ &quot; + NumberFormat.getNumberInstance().format(getSalario()) + &quot;\n&quot; +</span>
+<span class="nc" id="L66">                &quot;Quantidade Produzida: &quot; + NumberFormat.getNumberInstance().format(quantidadeProduzida) + &quot;\n&quot; +</span>
+<span class="nc" id="L67">                &quot;Valor por Unidade: R$ &quot; + NumberFormat.getNumberInstance().format(valorUnidade) + &quot;\n&quot; +</span>
+<span class="nc" id="L68">                &quot;Produtividade: R$ &quot; + NumberFormat.getNumberInstance().format(getProdutividade()) + &quot;\n&quot; +</span>
+<span class="nc" id="L69">                &quot;Salário Final: R$ &quot; + NumberFormat.getNumberInstance().format(calcularSalarioFinal()) + &quot;\n&quot;;</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

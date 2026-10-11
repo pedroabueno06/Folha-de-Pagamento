@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConexaoBanco {
-    private static final String URL = "jdbc:sqlite:folhaPagamento.db";
+    private static final String URL_PADRAO = "jdbc:sqlite:folhaPagamento.db";
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL);
+        return DriverManager.getConnection(System.getProperty("folha.db.url", URL_PADRAO));
     
     }
 

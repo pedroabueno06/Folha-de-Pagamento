@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConexaoBanco.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">demo</a> &gt; <a href="index.source.html" class="el_package">com.example.folhaPagamento.dao</a> &gt; <span class="el_source">ConexaoBanco.java</span></div><h1>ConexaoBanco.java</h1><pre class="source lang-java linenums">package com.example.folhaPagamento.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+<span class="nc" id="L8">public class ConexaoBanco {</span>
+    private static final String URL_PADRAO = &quot;jdbc:sqlite:folhaPagamento.db&quot;;
+
+    public static Connection getConnection() throws SQLException {
+<span class="nc" id="L12">        return DriverManager.getConnection(System.getProperty(&quot;folha.db.url&quot;, URL_PADRAO));</span>
+    
+    }
+
+    public static void criarTabelas() throws SQLException {
+<span class="nc" id="L17">        String sqlColaboradores = &quot;CREATE TABLE IF NOT EXISTS colaboradores (&quot; +</span>
+            &quot;MATRICULA INTEGER PRIMARY KEY, &quot;+
+            &quot;NOME TEXT NOT NULL, &quot;+
+            &quot;TIPO TEXT NOT NULL, &quot;+
+            &quot;SALARIO REAL NOT NULL)&quot;;
+
+<span class="nc" id="L23">            String sqlComissionados = &quot;CREATE TABLE IF NOT EXISTS comissionados (&quot; +</span>
+            &quot;MATRICULA INTEGER PRIMARY KEY, &quot; +
+            &quot;VALOR_VENDAS REAL NOT NULL, &quot; +
+            &quot;PERCENTUAL_COMISSAO REAL NOT NULL, &quot; +
+            &quot;FOREIGN KEY (matricula) REFERENCES colaboradores(matricula))&quot;;
+
+<span class="nc" id="L29">            String sqlProducao = &quot;CREATE TABLE IF NOT EXISTS producao (&quot; +</span>
+            &quot;MATRICULA INTEGER PRIMARY KEY, &quot;+
+            &quot;QUANTIDADE_PRODUZIDA REAL NOT NULL, &quot;+
+            &quot;VALOR_UNIDADE REAL NOT NULL, &quot;+
+            &quot;FOREIGN KEY (matricula) REFERENCES colaboradores(matricula))&quot;;
+
+<span class="nc" id="L35">        try (Connection connection = getConnection();</span>
+<span class="nc" id="L36">            Statement statement = connection.createStatement()) {</span>
+                
+<span class="nc" id="L38">            statement.execute(sqlColaboradores);</span>
+<span class="nc" id="L39">            statement.execute(sqlComissionados);</span>
+<span class="nc" id="L40">            statement.execute(sqlProducao);</span>
+        }
+<span class="nc" id="L42">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+demo,com.example.folhaPagamento.repositorio,GerenciadorColaboradores,392,0,20,0,97,0,16,0,6,0
+demo,com.example.folhaPagamento.dao,ConexaoBanco,36,0,0,0,11,0,3,0,3,0
+demo,com.example.folhaPagamento.service,Relatorio,208,0,18,0,41,0,13,0,4,0
+demo,com.example.folhaPagamento.model,ColaboradorPadrao,2,9,0,0,1,5,1,2,1,2
+demo,com.example.folhaPagamento.model,Colaborador,33,35,5,5,10,10,7,4,4,2
+demo,com.example.folhaPagamento.model,ColaboradorProducao,108,0,8,0,30,0,13,0,9,0
+demo,com.example.folhaPagamento.model,ColaboradorComissionado,100,0,6,0,26,0,11,0,8,0

@@ -1,4 +1,5 @@
 com\example\folhaPagamento\service\Relatorio.class
+com\example\folhaPagamento\dao\ConexaoBanco.class
 com\example\Main.class
 com\example\folhaPagamento\repositorio\GerenciadorColaboradores.class
 com\example\folhaPagamento\model\ColaboradorComissionado.class
