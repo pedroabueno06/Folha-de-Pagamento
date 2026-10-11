@@ -6,18 +6,18 @@ public class ColaboradorComissionado extends Colaborador {
     private double percentualComissao;
 
     public ColaboradorComissionado(String nome, int matricula, double salario, double valorVendas, double percentualComissao) {
-<span class="nc" id="L9">        super(nome, matricula, salario);</span>
-<span class="nc bnc" id="L10" title="All 2 branches missed.">        if (valorVendas &lt; 0) {</span>
-<span class="nc" id="L11">            throw new IllegalArgumentException(&quot;Valor de vendas inválido! Seu valor de vendas não pode ser negativo.&quot;);</span>
+<span class="fc" id="L9">        super(nome, matricula, salario);</span>
+<span class="fc bfc" id="L10" title="All 2 branches covered.">        if (valorVendas &lt; 0) {</span>
+<span class="fc" id="L11">            throw new IllegalArgumentException(&quot;Valor de vendas inválido! Seu valor de vendas não pode ser negativo.&quot;);</span>
         }
 
-<span class="nc bnc" id="L14" title="All 2 branches missed.">        if (percentualComissao &lt; 0) {</span>
-<span class="nc" id="L15">            throw new IllegalArgumentException(&quot;Percentual de comissão inválido! Seu percentual de vendas não pode ser negativo.&quot;);</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        if (percentualComissao &lt; 0) {</span>
+<span class="fc" id="L15">            throw new IllegalArgumentException(&quot;Percentual de comissão inválido! Seu percentual de vendas não pode ser negativo.&quot;);</span>
         }
 
-<span class="nc" id="L18">        this.valorVendas = valorVendas;</span>
-<span class="nc" id="L19">        this.percentualComissao = percentualComissao;</span>
-<span class="nc" id="L20">    }</span>
+<span class="fc" id="L18">        this.valorVendas = valorVendas;</span>
+<span class="fc" id="L19">        this.percentualComissao = percentualComissao;</span>
+<span class="fc" id="L20">    }</span>
 
     public double getValorVendas() {
 <span class="nc" id="L23">        return valorVendas;</span>
@@ -40,8 +40,8 @@ public class ColaboradorComissionado extends Colaborador {
 
     @Override
     public double calcularSalarioFinal() {
-<span class="nc" id="L43">        double comissao = (valorVendas * percentualComissao) /100;</span>
-<span class="nc" id="L44">        return getSalario() + comissao; //Fórmula para calcular o salário final do colaborador comissionado</span>
+<span class="fc" id="L43">        double comissao = (valorVendas * percentualComissao) /100;</span>
+<span class="fc" id="L44">        return getSalario() + comissao; //Fórmula para calcular o salário final do colaborador comissionado</span>
     }
 
     @Override
