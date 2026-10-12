@@ -24,11 +24,11 @@ public abstract class Colaborador {
 <span class="fc" id="L24">    }</span>
 
     public String getNome() {
-<span class="nc" id="L27">        return nome;</span>
+<span class="fc" id="L27">        return nome;</span>
     }
 
     public int getMatricula() { //Não foi criado um setMatrícula pois após o colaborador inseri-la, a mesma não pode ser mudada.
-<span class="nc" id="L31">        return matricula;</span>
+<span class="fc" id="L31">        return matricula;</span>
     }
 
     public double getSalario() {
@@ -50,7 +50,7 @@ public abstract class Colaborador {
     @Override
     public String toString() {
 <span class="nc" id="L52">        return &quot;Nome: &quot; + nome + &quot;\n&quot; +</span>
-                &quot;Matrícula: &quot; + matricula  + &quot;\n&quot; +
+<span class="nc" id="L53">                &quot;Matrícula: &quot; + matricula  + &quot;\n&quot; +</span>
 <span class="nc" id="L54">                &quot;Tipo de Colaborador: &quot; + getTipoColaborador() + &quot;\n&quot; +</span>
 <span class="nc" id="L55">                &quot;Salário: R$ &quot; + NumberFormat.getNumberInstance().format(calcularSalarioFinal()) + &quot;\n&quot;;</span>
 

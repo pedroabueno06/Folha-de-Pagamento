@@ -9,36 +9,36 @@ import java.sql.Statement;
     private static final String URL_PADRAO = &quot;jdbc:sqlite:folhaPagamento.db&quot;;
 
     public static Connection getConnection() throws SQLException {
-<span class="nc" id="L12">        return DriverManager.getConnection(System.getProperty(&quot;folha.db.url&quot;, URL_PADRAO));</span>
+<span class="fc" id="L12">        return DriverManager.getConnection(System.getProperty(&quot;folha.db.url&quot;, URL_PADRAO));</span>
     
     }
 
     public static void criarTabelas() throws SQLException {
-<span class="nc" id="L17">        String sqlColaboradores = &quot;CREATE TABLE IF NOT EXISTS colaboradores (&quot; +</span>
+<span class="fc" id="L17">        String sqlColaboradores = &quot;CREATE TABLE IF NOT EXISTS colaboradores (&quot; +</span>
             &quot;MATRICULA INTEGER PRIMARY KEY, &quot;+
             &quot;NOME TEXT NOT NULL, &quot;+
             &quot;TIPO TEXT NOT NULL, &quot;+
             &quot;SALARIO REAL NOT NULL)&quot;;
 
-<span class="nc" id="L23">            String sqlComissionados = &quot;CREATE TABLE IF NOT EXISTS comissionados (&quot; +</span>
+<span class="fc" id="L23">            String sqlComissionados = &quot;CREATE TABLE IF NOT EXISTS comissionados (&quot; +</span>
             &quot;MATRICULA INTEGER PRIMARY KEY, &quot; +
             &quot;VALOR_VENDAS REAL NOT NULL, &quot; +
             &quot;PERCENTUAL_COMISSAO REAL NOT NULL, &quot; +
             &quot;FOREIGN KEY (matricula) REFERENCES colaboradores(matricula))&quot;;
 
-<span class="nc" id="L29">            String sqlProducao = &quot;CREATE TABLE IF NOT EXISTS producao (&quot; +</span>
+<span class="fc" id="L29">            String sqlProducao = &quot;CREATE TABLE IF NOT EXISTS producao (&quot; +</span>
             &quot;MATRICULA INTEGER PRIMARY KEY, &quot;+
             &quot;QUANTIDADE_PRODUZIDA REAL NOT NULL, &quot;+
             &quot;VALOR_UNIDADE REAL NOT NULL, &quot;+
             &quot;FOREIGN KEY (matricula) REFERENCES colaboradores(matricula))&quot;;
 
-<span class="nc" id="L35">        try (Connection connection = getConnection();</span>
-<span class="nc" id="L36">            Statement statement = connection.createStatement()) {</span>
+<span class="fc" id="L35">        try (Connection connection = getConnection();</span>
+<span class="fc" id="L36">            Statement statement = connection.createStatement()) {</span>
                 
-<span class="nc" id="L38">            statement.execute(sqlColaboradores);</span>
-<span class="nc" id="L39">            statement.execute(sqlComissionados);</span>
-<span class="nc" id="L40">            statement.execute(sqlProducao);</span>
+<span class="fc" id="L38">            statement.execute(sqlColaboradores);</span>
+<span class="fc" id="L39">            statement.execute(sqlComissionados);</span>
+<span class="fc" id="L40">            statement.execute(sqlProducao);</span>
         }
-<span class="nc" id="L42">    }</span>
+<span class="fc" id="L42">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
