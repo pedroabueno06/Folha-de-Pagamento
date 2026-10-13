@@ -1,8 +1,8 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-demo,com.example.folhaPagamento.repositorio,GerenciadorColaboradores,5,387,3,17,3,94,3,13,0,6
-demo,com.example.folhaPagamento.dao,ConexaoBanco,3,33,0,0,1,10,1,2,1,2
-demo,com.example.folhaPagamento.service,Relatorio,0,208,0,18,0,41,0,13,0,4
-demo,com.example.folhaPagamento.model,ColaboradorPadrao,0,11,0,0,0,6,0,3,0,3
-demo,com.example.folhaPagamento.model,Colaborador,15,53,5,5,4,16,4,7,1,5
+demo,com.example.folhaPagamento.repositorio,GerenciadorColaboradores,11,331,5,15,4,94,5,11,0,6
+demo,com.example.folhaPagamento.dao,ConexaoBanco,3,29,0,0,1,10,1,2,1,2
+demo,com.example.folhaPagamento.service,Relatorio,0,208,0,18,0,46,0,13,0,4
+demo,com.example.folhaPagamento.model,ColaboradorPadrao,0,11,0,0,0,4,0,3,0,3
+demo,com.example.folhaPagamento.model,Colaborador,15,53,5,5,4,15,4,7,1,5
 demo,com.example.folhaPagamento.model,ColaboradorProducao,24,84,4,4,8,22,4,9,2,7
 demo,com.example.folhaPagamento.model,ColaboradorComissionado,13,87,2,4,4,22,2,9,1,7

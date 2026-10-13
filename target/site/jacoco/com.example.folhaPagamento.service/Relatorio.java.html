@@ -11,7 +11,7 @@ import com.example.folhaPagamento.model.Colaborador;
 <span class="fc" id="L11">        double total = 0;</span>
 <span class="fc bfc" id="L12" title="All 2 branches covered.">        for (Colaborador colaborador : colaboradores) {</span>
 <span class="fc" id="L13">            total += colaborador.calcularSalarioFinal();</span>
-        }
+<span class="fc" id="L14">        }</span>
 <span class="fc" id="L15">        return total;</span>
     }
 
@@ -22,7 +22,7 @@ import com.example.folhaPagamento.model.Colaborador;
 <span class="fc bfc" id="L22" title="All 2 branches covered.">            if (colaborador.getTipoColaborador().equals(tipo)) {</span>
 <span class="fc" id="L23">                total += colaborador.calcularSalarioFinal();</span>
             }
-        }
+<span class="fc" id="L25">        }</span>
 <span class="fc" id="L26">        return total;</span>
     }
 
@@ -41,10 +41,10 @@ import com.example.folhaPagamento.model.Colaborador;
 <span class="fc bfc" id="L41" title="All 2 branches covered.">            } else if (colaborador.getTipoColaborador().equals(&quot;Comissionado&quot;)) {</span>
 <span class="fc" id="L42">                comissionado.add(colaborador);</span>
 
-<span class="fc" id="L44">            } else {</span>
+            } else {
 <span class="fc" id="L45">                producao.add(colaborador); //Colaborador de produção está dentor apenas dentor de um else pois se o usuário não cadastro o colaborador em outro tipo, sobrou apenas o comissionado na geração da folha de pagamento</span>
             }
-        }
+<span class="fc" id="L47">        }</span>
 <span class="fc" id="L48">        StringBuilder relatorio = new StringBuilder();</span>
 <span class="fc" id="L49">            relatorio.append(&quot;\n-----------------------------\n&quot;);</span>
 <span class="fc" id="L50">                relatorio.append(&quot;FOLHA DE PAGAMENTO DETALHADA\n&quot;);</span>
@@ -56,7 +56,7 @@ import com.example.folhaPagamento.model.Colaborador;
 <span class="fc bfc" id="L56" title="All 2 branches covered.">                        for (Colaborador colaborador : padrao) {</span>
 <span class="fc" id="L57">                            relatorio.append(colaborador.toString()).append(&quot;\n&quot;);</span>
 <span class="fc" id="L58">                                relatorio.append(&quot;-------------------------\n&quot;);</span>
-                            }
+<span class="fc" id="L59">                            }</span>
                     
 <span class="fc" id="L61">                    relatorio.append(&quot;COLABORADOR COMISSIONADO\n&quot;);</span>
 <span class="fc" id="L62">                        relatorio.append(&quot;-------------------------\n&quot;);</span>
@@ -64,7 +64,7 @@ import com.example.folhaPagamento.model.Colaborador;
 <span class="fc" id="L64">                                relatorio.append(colaborador.toString()).append(&quot;\n&quot;);</span>
 <span class="fc" id="L65">                                    relatorio.append(&quot;---------------------\n&quot;);</span>
 
-                            }
+<span class="fc" id="L67">                            }</span>
 
 <span class="fc" id="L69">                    relatorio.append(&quot;COLABORADOR PRODUÇÃO\n&quot;);</span>
 <span class="fc" id="L70">                        relatorio.append(&quot;---------------------\n&quot;);</span>
@@ -72,7 +72,7 @@ import com.example.folhaPagamento.model.Colaborador;
 <span class="fc" id="L72">                                relatorio.append(colaborador.toString()).append(&quot;&quot;);</span>
 <span class="fc" id="L73">                                    relatorio.append(&quot;---------------------------------------\n&quot;);</span>
 
-                            }
+<span class="fc" id="L75">                            }</span>
 
 <span class="fc" id="L77">        return relatorio.toString();</span>
     }

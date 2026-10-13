@@ -144,7 +144,7 @@ import com.example.folhaPagamento.model.ColaboradorProducao;
                         }
 
 <span class="fc" id="L146">                        lista.add(colaborador);</span>
-                    }
+<span class="fc" id="L147">                    }</span>
             }
             
 <span class="fc" id="L150">        return lista;</span>
@@ -178,7 +178,7 @@ import com.example.folhaPagamento.model.ColaboradorProducao;
                     }
 <span class="fc" id="L179">                    connection.commit();</span>
                     //este return lança um true se alguma linha da tabela de Colaboradores foi apagada por conta da matrícula existir e um false se nada for apagado
-<span class="fc bfc" id="L181" title="All 2 branches covered.">                        return linhasApagadas &gt; 0;</span>
+<span class="pc bpc" id="L181" title="1 of 2 branches missed.">                        return linhasApagadas &gt; 0;</span>
             
 <span class="nc" id="L183">        } catch (SQLException e) {</span>
 <span class="nc" id="L184">            connection.rollback();</span>
@@ -192,8 +192,8 @@ import com.example.folhaPagamento.model.ColaboradorProducao;
 <span class="fc" id="L192">        boolean removeu = removerColaborador(antigaMatricula);</span>
 
         //! quere dizer que se o colaborador não foi removido do sistema, o meso pode ter seu cadastro atualizado
-<span class="fc bfc" id="L195" title="All 2 branches covered.">        if(!removeu) {</span>
-<span class="fc" id="L196">            throw new IllegalArgumentException(&quot;Matrícula inválida! Não há nenhum colaborador com este número de matrícula.&quot;);</span>
+<span class="pc bpc" id="L195" title="1 of 2 branches missed.">        if(!removeu) {</span>
+<span class="nc" id="L196">            throw new IllegalArgumentException(&quot;Matrícula inválida! Não há nenhum colaborador com este número de matrícula.&quot;);</span>
         }
         
 <span class="fc" id="L199">        adicionarColaborador(novoColaborador);</span>
