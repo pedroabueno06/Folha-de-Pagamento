@@ -52,7 +52,7 @@ public class GerenciadorColaboradoresTest {
                 assertEquals("Pedro Bueno", colaboradorCadastrado.getNome());
                 assertEquals(123, colaboradorCadastrado.getMatricula());
                 assertEquals(1500, colaboradorCadastrado.getSalario(), 0.001);
-                assertInstanceOf(ColaboradorPadrao.class, colaboradorCadastrado);
+                assertInstanceOf(ColaboradorPadrao.class, buscarMatricula(123));
         }
 
     @Test 
@@ -68,7 +68,7 @@ public class GerenciadorColaboradoresTest {
                 assertEquals(1500, colaboradorCadastrado.getSalario(), 0.001);
                 assertEquals(100, colaboradorCadastrado.getValorVendas(), 0.001);
                 assertEquals(10, colaboradorCadastrado.getPercentualComissao(), 0.001);
-                assertInstanceOf(ColaboradorComissionado.class, colaboradorCadastrado);
+                assertInstanceOf(ColaboradorComissionado.class, buscarMatricula(123));
     }
 
     @Test 
@@ -84,7 +84,7 @@ public class GerenciadorColaboradoresTest {
                 assertEquals(1500, colaboradorCadastrado.getSalario(), 0.001);
                 assertEquals(100, colaboradorCadastrado.getQuantidadeProduzida(), 0.001);
                 assertEquals(10, colaboradorCadastrado.getValorUnidade(), 0.001);
-                assertInstanceOf(ColaboradorProducao.class, colaboradorCadastrado);
+                assertInstanceOf(ColaboradorProducao.class, buscarMatricula(123));
     }
 
     @Test 
@@ -150,5 +150,21 @@ public class GerenciadorColaboradoresTest {
 
             Colaborador colaboradorRemovido = buscarMatricula(123);
                 assertNull(colaboradorRemovido);
+    }
+
+    @Test 
+    @DisplayName ("CT022 – Persistência dos Dados")
+    public void testarPersistenciaDosDados() throws SQLException {
+    gerenciadorColaboradores.adicionarColaborador(new ColaboradorPadrao("Pedro Bueno", 123, 1500));
+        
+        //Simula o o usuário encerrando o programa e abrindo novamente
+        gerenciadorColaboradores = new GerenciadorColaboradores();
+
+        Colaborador colaboradorCadastrado = buscarMatricula(123);
+            assertNotNull(colaboradorCadastrado);
+            assertEquals("Pedro Bueno", colaboradorCadastrado.getNome());
+            assertEquals(123, colaboradorCadastrado.getMatricula());
+            assertEquals(1500, colaboradorCadastrado.getSalario(), 0.001);
+            assertInstanceOf(ColaboradorPadrao.class, buscarMatricula(123));
     }
 }
