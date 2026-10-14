@@ -3,7 +3,7 @@
 # Descrição
 O Sistema de Folha de Pagamento é uma aplicação desenvolvida em Java com o objetivo de realizar o gerenciamento de colaboradores e automatizar o processo de cálculo salarial. O sistema permite cadastrar, consultar, atualizar e remover colaboradores, além de gerar folhas de pagamento detalhadas e resumos consolidados.
 O sistema trabalha com três categorias de colaboradores:
-- - Colaborador Padrão
+- Colaborador Padrão
 - Colaborador Comissionado
 - Colaborador por Produção
 Todas as informações são armazenadas em banco de dados SQLite.
@@ -49,6 +49,41 @@ Todas as informações são armazenadas em banco de dados SQLite.
 o sistema utiliza SQLite para armazenamento persistente
 - Arquivo criado automaticamente:
   - folhaPagamento.db
-String de conexão utilizada:
-jdbc:sqlite:folhaPagamento.db
+- String de conexão utilizada:
+  - jdbc:sqlite:folhaPagamento.db
 O banco de dados e suas tabelas são criados automaticamente quando a aplicação é executada pela primeira vez.
+# Funcionalidades
+- Cadastro de Colaboradores
+Permite cadastrar três tipos de colaboradores:
+- Colaborador Padrão
+Recebe apenas o salário base
+Exemplo:
+Matrícula: 1001
+Nome: João Silva
+- Colaborador Comissionado
+Recebe o salário base e comissão sobre vendas
+Exemplo:
+Matrícula: 1002
+Nome: Maria Souza
+Salário Base: R$ 2500,00
+Vendas: R$ 10.000,00
+Comissão: 10%
+- Colaborador por Produção
+Recebe o salário base e um adicional por produção
+Exemplo:
+Matrícula: 1003
+Nome: Carlos Oliveira
+Salário Base: R$ 2500,00
+Quantidade Produzida: 200
+Valor por Unidade: R$ 5,00
+- Consulta de Colaboradores
+Lista todos os colabores cadastrados que tenham:
+-- Matrícula
+-- Nome
+-- Tipo de colaborador
+-- Remuneração
+- Atualização de Colaboradores
+Permite alterar:
+-- Nome
+-- Salário Base
+-- Informações específicas do tipo de colaborador
