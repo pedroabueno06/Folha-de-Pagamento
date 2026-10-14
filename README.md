@@ -53,37 +53,44 @@ o sistema utiliza SQLite para armazenamento persistente
   - jdbc:sqlite:folhaPagamento.db
 O banco de dados e suas tabelas são criados automaticamente quando a aplicação é executada pela primeira vez.
 # Funcionalidades
-- Cadastro de Colaboradores
-Permite cadastrar três tipos de colaboradores:
-- Colaborador Padrão
-Recebe apenas o salário base
+- Cadastro de colaboradores:
+Permite cadastrar três tipos de colaboradores, que seriam:
+- Colaborador padrão: 
+  - Recebe apenas o salário base
 Exemplo:
 Matrícula: 1001
 Nome: João Silva
-- Colaborador Comissionado
-Recebe o salário base e comissão sobre vendas
+- Colaborador comissionado: 
+  - Recebe o salário base e comissão sobre vendas
 Exemplo:
 Matrícula: 1002
 Nome: Maria Souza
 Salário Base: R$ 2500,00
 Vendas: R$ 10.000,00
 Comissão: 10%
-- Colaborador por Produção
-Recebe o salário base e um adicional por produção
+- Colaborador por produção: 
+  - Recebe o salário base e um adicional por produção
 Exemplo:
 Matrícula: 1003
 Nome: Carlos Oliveira
 Salário Base: R$ 2500,00
 Quantidade Produzida: 200
 Valor por Unidade: R$ 5,00
-- Consulta de Colaboradores
-Lista todos os colabores cadastrados que tenham:
--- Matrícula
--- Nome
--- Tipo de colaborador
--- Remuneração
-- Atualização de Colaboradores
-Permite alterar:
--- Nome
--- Salário Base
--- Informações específicas do tipo de colaborador
+- Consulta de colaboradores: 
+  - Lista todos os colabores cadastrados que tenham:
+Matrícula,
+Nome,
+Tipo de colaborador,
+Remuneração
+- Atualização de colaboradores: 
+  - Permite alterar:
+Nome,
+Salário Base,
+Informações específicas do tipo de colaborador
+- Remoção de colaboradores:
+Permite excluir colaboradores utilizando a matrícula
+- Geração de folha de pagamento:
+Matrícula
+Nome
+Tipo de Colaborador
+Salário Final
