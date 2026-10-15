@@ -121,25 +121,20 @@ Exemplo:
 
 folhapagamento
 
-├── model
-│   ├── Colaborador.java
-│   ├── ColaboradorPadrao.java
-│   ├── ColaboradorComissionado.java
-│   └── ColaboradorProducao.java
-│
-├── repositorio
-│   └── GerenciadorColaboradores.java
-│
-├── service
-│   └── Relatorio.java
-│
-├── dao
-│   └── ConexaoBanco.java
-│
-├── view
-│   └── Cadastro.java
-│
-└── Main.java
+- model
+  - Colaborador.java
+  - ColaboradorPadrao.java
+  - ColaboradorComissionado.java
+  - ColaboradorProducao.java
+- repositorio
+  - GerenciadorColaboradores.java
+- service
+  - Relatorio.java
+- dao
+  - ConexaoBanco.java
+- view
+  - Cadastro.java
+- Main.java
 
 # Testes
 Executar testes:
