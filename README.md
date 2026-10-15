@@ -167,8 +167,8 @@ Projeto desenvolvido por:
 - Gabriel Gastal
 - Joaquim Attanasio da Silva
 - Pedro Ascenço Bueno
-Disciplina: Garantia da Qualidade de Software (GQS)
- Instituição: Centro Universitário Ritter dos Reis - Campus FAPA
+- Disciplina: Garantia da Qualidade de Software (GQS)
+- Instituição: Centro Universitário Ritter dos Reis - Campus FAPA
 
 # Licença
 Este projeto foi desenvolvido exclusivamente para fins acadêmicos como parte das atividades avaliativas da disciplina de Garantia da Qualidade de Software.
