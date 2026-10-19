@@ -50,12 +50,12 @@ O sistema trabalha com três categorias de colaboradores:
 
 # Configuração
 - Banco de Dados;
-- O sistema utiliza SQLite para armazenamento persistente
+O sistema utiliza SQLite para armazenamento persistente
 - Arquivo criado automaticamente:
   - folhaPagamento.db.
 - String de conexão utilizada:
   - jdbc:sqlite:folhaPagamento.db.
-- O banco de dados e suas tabelas são criados automaticamente quando a aplicação é executada pela primeira vez.
+O banco de dados e suas tabelas são criados automaticamente quando a aplicação é executada pela primeira vez.
 
 # Funcionalidades
 - Cadastro de colaboradores:
@@ -68,19 +68,19 @@ Nome: João Silva;
 - Colaborador comissionado: 
   - Recebe o salário base e comissão sobre vendas
 Exemplo:
-Matrícula: 1002
-Nome: Maria Souza
-Salário Base: R$ 2500,00
-Vendas: R$ 10.000,00
-Comissão: 10%
+Matrícula: 1002;
+Nome: Maria Souza;
+Salário Base: R$ 2500,00;
+Vendas: R$ 10.000,00;
+Comissão: 10%;
 - Colaborador por produção: 
-  - Recebe o salário base e um adicional por produção
+  - Recebe o salário base e um adicional por produção.
 Exemplo:
-Matrícula: 1003
-Nome: Carlos Oliveira
-Salário Base: R$ 2500,00
-Quantidade Produzida: 200
-Valor por Unidade: R$ 5,00
+Matrícula: 1003;
+Nome: Carlos Oliveira;
+Salário Base: R$ 2500,00;
+Quantidade Produzida: 200;
+Valor por Unidade: R$ 5,00;
 - Consulta de colaboradores: 
   - Lista todos os colabores cadastrados que tenham:
 Matrícula,
@@ -140,35 +140,35 @@ folhapagamento
 Executar testes:
 mvn test
 Tipos de testes implementados:
-- Testes Unitários
-- Testes de Integração
-- Testes de Sistema
-- Testes de Aceitação
+- Testes Unitários;
+- Testes de Integração;
+- Testes de Sistema;
+- Testes de Aceitação;
 Cobertura de código medida através do JaCoCo.
 
 # Boas Práticas e Contribuições
 Contribuições são bem-vindas.
 Sugestões:
-- Abrir uma issue descrevendo a melhoria.
-- Criar uma branch descritiva.
-- Realizar commits pequenos.
-- Abrir Pull Request documentando as mudanças.
+- Abrir uma issue descrevendo a melhoria;
+- Criar uma branch descritiva;
+- Realizar commits pequenos;
+- Abrir Pull Request documentando as mudanças;
 - Garantir que os testes estejam aprovados.
 Modelo de Commit
-- feat: adicionar cadastro de colaborador de produção
-- feat: implementar persistência em SQLite
-- fix: corrigir validação de matrícula duplicada
-- fix: corrigir cálculo de comissão
-- docs: atualizar README
-- test: adicionar testes unitários do relatório
+- feat: adicionar cadastro de colaborador de produção;
+- feat: implementar persistência em SQLite;
+- fix: corrigir validação de matrícula duplicada;
+- fix: corrigir cálculo de comissão;
+- docs: atualizar README;
+- test: adicionar testes unitários do relatório.
 
 # Equipe
 Projeto desenvolvido por:
-- Gabriel Gastal
-- Joaquim Attanasio da Silva
-- Pedro Ascenço Bueno
-- Disciplina: Garantia da Qualidade de Software (GQS)
-- Instituição: Centro Universitário Ritter dos Reis - Campus FAPA
+- Gabriel Gastal;
+- Joaquim Attanasio da Silva;
+- Pedro Ascenço Bueno;
+- Disciplina: Garantia da Qualidade de Software (GQS);
+- Instituição: Centro Universitário Ritter dos Reis - Campus FAPA.
 
 # Licença
 Este projeto foi desenvolvido exclusivamente para fins acadêmicos como parte das atividades avaliativas da disciplina de Garantia da Qualidade de Software.
