@@ -46,7 +46,8 @@ O sistema trabalha com três categorias de colaboradores:
 2. Compilar do Zero: mvn clean compile;
 3. Executar Testes: mvn test;
 4. Gerar Pacote: mvn package;
-5. Executar Aplicação: java -jar target/folha-pagamento.jar.
+5. Compilar e executar os testes: mvn clean test;
+6. Executar a aplicação: mvn exec:java.
 
 # Configuração
 - Banco de Dados;
